@@ -76,8 +76,7 @@ $lightGreen : #78bd39;
         //NAVBAR
         .navbar{
             .container{
-                margin-bottom: 80px !important;
-                padding: 10px 0px !important;
+                padding: 20px 0px !important;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -94,7 +93,6 @@ $lightGreen : #78bd39;
                     .logged {
                         text-decoration: underline;
                     }
-
                     h6{
                         font-size: 16px;
                         font-weight: 300;
@@ -105,15 +103,17 @@ $lightGreen : #78bd39;
                     }
                     .write {
                         background-color: $lightGreen;
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
+                        width: 80px;
+                        height: 40px;
+                        border-radius: 8px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         font-weight: 300;
                         border: 1px solid rgb(48, 231, 109);
                         transition: all 0.3s;
+                        text-decoration: none;
+                        color:#555;
 
                         &:hover {
                             color: rgb(30, 139, 45);
@@ -126,16 +126,63 @@ $lightGreen : #78bd39;
         }
         //FOOTER
         footer {
-            margin-top: 80px !important;
             padding: 20px !important;
             background-color: $lightGreen;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            
             img {
                 height: 50px;
             }
+        }
+
+        //Landing 
+        .land{
+            background-image: linear-gradient(rgba(33, 33, 33, .5),
+            rgba(33, 33, 33, .5)), url("./images/kitchen.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+            max-width: 100%;
+            height: 50vh;
+            margin-bottom: 100px !important;
+            
+
+            .land-text{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 45px;
+            }
+
+            .home-buttons {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+
+                button {
+                    padding: 10px !important;
+                    border: 1px solid white;
+                    border-radius: 8px;
+                    background-color: $lightGreen;
+                    color: white;
+                    font-size: 20px;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: rgb(30, 139, 45);
+                        background-color: white;
+                        border: 1px solid $lightGreen;
+                    }
+                }
+                
+
+            }
+
+     
+
         }
 
         //HOME
@@ -145,11 +192,17 @@ $lightGreen : #78bd39;
                 margin-top: 20px !important;
                 display: flex;
                 flex-direction: column;
+                margin-bottom: 20px !important;
                 gap: 30px;
 
+                .noOrders {
+                    font-size: 28px;
+                    text-align: center;
+                }
                 h1 {
                     text-align: center;
                     color: $lightGreen;
+                    font-size: 46px;
                     text-decoration: underline;
                 }
                 .nothing{
@@ -175,11 +228,11 @@ $lightGreen : #78bd39;
                         }
                     }
                     .content{
-                        flex: 3;
+                        flex: 2;
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
-                        margin-top: 70px !important;
+                        margin-top: 30px !important;
 
                         .title {
                             font-size: 38px;
@@ -197,6 +250,7 @@ $lightGreen : #78bd39;
                             border: none;
                             border-radius: 12px;
                             margin-top: 10px !important;
+                            margin-bottom: 30px !important;
                             cursor: pointer;
                             background-color: white;
                             border: 1px solid $lightGreen;
@@ -224,6 +278,9 @@ $lightGreen : #78bd39;
                 display: flex;
                 flex-direction: column;
                 gap: 30px;
+                border: 1px solid rgb(194, 194, 194);
+                border-radius: 12px;
+                padding: 50px !important;
 
                 img {
                     width: 100%;
@@ -236,6 +293,8 @@ $lightGreen : #78bd39;
                     align-items: center;
                     gap: 10px;
                     font-size: 14px;
+                
+
                     img {
                         width: 50px;
                         height: 50px;
@@ -347,12 +406,11 @@ $lightGreen : #78bd39;
                 flex:2;
                 display: flex;
                 flex-direction: column;
-                gap: 20px;
 
                 .item{
                     padding: 10px !important;
                     border: 1px solid lightgray;
-                    flex: 1;
+                    gap: 50px;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
@@ -362,16 +420,17 @@ $lightGreen : #78bd39;
                 .buttons {
                     display: flex;
                     flex-direction: column;
-                    gap: 10px;
 
                     button {
-                        padding: 10px 20px !important;
+                        padding: 20px 20px !important;
                         border: none;
                         border-radius: 8px;
                         cursor: pointer;
                         background-color: $lightGreen;
                         border: 1px solid $lightGreen;
                         transition: all 0.3s;
+                        color: #555;
+                        font-size: 18px;
 
                         &:hover {
                             color: rgb(22, 109, 48);

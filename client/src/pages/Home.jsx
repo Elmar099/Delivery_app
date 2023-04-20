@@ -4,6 +4,7 @@ import { useState } from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
+
 const Home = () => {
   const [posts, setPosts] = useState([])
 
@@ -23,11 +24,11 @@ const Home = () => {
     <div className='home'>
       <div className='posts'>
         <h1>~Orders~</h1>
-      {
+      {posts.length > 0 ?
       posts.map((post) => (
         <div className='post' key={post.id}>
           <div className='img'>
-            <img src="https://image.similarpng.com/very-thumbnail/2021/09/Good-food-logo-design-on-transparent-background-PNG.png" alt="" />
+            <img src="https://img.freepik.com/premium-vector/good-food-logo-design_79169-10.jpg?w=2000" alt="" />
           </div>
           <div className="content">
             <Link className='link' to={`/post/${post.id}`}>
@@ -38,6 +39,7 @@ const Home = () => {
           </div>
         </div>
       ))
+      : <p className="noOrders"><br></br>NO ORDERS YET.</p>
     } 
       </div>
     </div>

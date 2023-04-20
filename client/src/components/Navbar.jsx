@@ -16,11 +16,19 @@ const Navbar = () => {
           </Link>
         </div>
         <div className='links'>
-          <Link className='link' to="/?cat=home">
+          <Link className='link' to="/">
+            <h6>CONTACT US</h6>
+          </Link>
+          <Link className='link' to="/landing">
             <h6>HOME</h6>
           </Link>
+          
           <Link className='link' to="/?cat=art">
-            <h6>ORDERS</h6>
+            {currentUser?
+            <h6>ORDERS</h6> 
+            : <p></p>
+          }
+            
           </Link>
           <span className='logged'>
             <Link className='link' to="/profile">
@@ -29,9 +37,14 @@ const Navbar = () => {
             
             </span>
           {currentUser ? (
-          <span onClick={logout}>Logout</span> 
+          <span className='write' onClick={logout}>
+           <Link to="/landing">
+           Logout
+           </Link>
+            
+            </span> 
           ) : ( 
-          <Link className='link' to='/login'>
+          <Link className='write' to='/login'>
             Login
           </Link>
           )}

@@ -9,6 +9,7 @@ import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Single from "./pages/Single"
 import Profile from "./pages/Profile"
+import Landing from "./pages/Landing"
 import Write from "./pages/Write"
 import Home from "./pages/Home"
 
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
     {
       path: '/profile',
       element: <Profile/>,
+    },
+    {
+      path: '/landing',
+      element: <Landing/>,
     },
   ],
 },
