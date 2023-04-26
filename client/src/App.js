@@ -9,6 +9,7 @@ import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Single from "./pages/Single"
 import Profile from "./pages/Profile"
+import Driver from "./pages/Driver"
 import Write from "./pages/Write"
 import Home from "./pages/Home"
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
     {
       path: '/write',
       element: <Write/>,
+    },
+    {
+      path: '/driver',
+      element: <Driver/>,
     },
     {
       path: '/profile',
