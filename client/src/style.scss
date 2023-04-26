@@ -234,6 +234,9 @@ $lightGreen : #78bd39;
                         justify-content: space-between;
                         margin-top: 30px !important;
 
+                        .requested {
+                            color: $lightGreen;
+                        }
                         .title {
                             font-size: 38px;
                             color: #7b974d;
@@ -554,6 +557,14 @@ $lightGreen : #78bd39;
                     letter-spacing: 1.5px;
                 }
             }        
+        }
+        //DRIVER
+        .map {
+            border: 2px dashed rgb(187, 186, 186);
+            border-radius: 12px;
+            box-shadow: 1px 4px 10px rgba(0, 0, 0, .6);
+            margin: 50px 0px !important;
+
         }
     }
 }

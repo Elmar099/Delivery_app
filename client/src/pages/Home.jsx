@@ -22,6 +22,12 @@ const Home = () => {
     fetchData()
   }, []);
 
+  const [isDriverRequested, setIsDriverRequested] = useState(false);
+
+  const handleClick = () => {
+    setIsDriverRequested(true);
+  };
+
   
 
   return (
@@ -39,7 +45,9 @@ const Home = () => {
               <h2 className="title">{post.title}</h2>
             </Link>
             <p>{post.desc}</p>
-            <button>Request Driver</button>
+           
+              <button onClick={handleClick}>Request Driver</button>
+             { isDriverRequested && <div className="requested">Driver has been requested!</div>}
           </div>
         </div>
       ))
