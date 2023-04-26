@@ -1,5 +1,5 @@
 import React from 'react'
-import Kitchen from "../images/kitchen.jpg"
+import {Link} from 'react-router-dom'
 
 const Landing = () => {
   return (
@@ -9,7 +9,11 @@ const Landing = () => {
         </div>
         <div className='home-buttons'>
         <button>Check us out!</button>
-        <button>Create and account</button>
+
+        <button>
+          <Link className='link' to='/register'>Create and account</Link>
+          
+          </button>
         </div>
     </div>
 

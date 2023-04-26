@@ -45,7 +45,6 @@ const handleSubmit = async e => {
         <select name="select" id="select">
           <option value="restaurant">Restaurant</option>
           <option value="driver">Driver</option>
-
         </select>
         
         <button onClick={handleSubmit}>Log in</button>
