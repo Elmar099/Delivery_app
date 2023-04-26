@@ -23,7 +23,7 @@ const Write = () => {
       await axios.post(`/posts/`, {
         title, locate, desc:value,
       })
-      navigate('/')
+      navigate('/home')
     } catch(err) {
         console.log(err)
     }
@@ -42,13 +42,12 @@ const Write = () => {
       </div>
       <div className="menu">
         <div className="item">
-          <h1>Publish</h1>
+          <h1>Post order</h1>
           <div className="buttons">
-            <button onClick={handleClick}>Publish</button>
+            <button onClick={handleClick}>Confirm order</button>
           </div>
         </div>
-        <div className="item">
-        </div>
+        
       </div>
     </div>
   )

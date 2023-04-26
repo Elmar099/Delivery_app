@@ -9,6 +9,7 @@ const Register = () => {
     username: '',
     password: '', 
     email: '',
+    accType: 'restaurants'
   })
 
   const [err, setError] = useState(null)
@@ -38,6 +39,13 @@ return (
         <input type='text' placeholder='Username...' name='username' onChange={handleChange}/>
         <input type='text' placeholder='Email...' name='email' onChange={handleChange}/>
         <input type='password' placeholder='Password...' name='password' onChange={handleChange}/>
+        <label htmlFor="select">Choose account type:</label>
+        <select name="accType" onChange={handleChange}>
+          <option value="restaurants" defaultValue='restaurants'>Restaurant</option>
+          <option value="drivers">Driver</option>
+
+        </select>
+        
         <button onClick={handleSubmit}>Sign up</button>
        { err && <p>{err}</p> }
         <span>Already have an account? <Link to='/login'>Log in.</Link></span>

@@ -4,7 +4,13 @@ import jwt from 'jsonwebtoken'
 
 export const register = (req, res)=> {
     //check existing user
-    const q = "SELECT * FROM users WHERE email = ? OR username = ?";
+    var q 
+    if (req.body.accType == "restaurants") {
+        q = `SELECT * FROM restaurants WHERE email = ? OR username = ?`
+    } 
+    else{
+        q = `SELECT * FROM drivers WHERE email = ? OR username = ?`
+    }
 
     db.query(q, [req.body.email, req.body.name], (err, data) => {
         if (err) return res.json(err)
@@ -14,7 +20,13 @@ export const register = (req, res)=> {
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(req.body.password, salt)
 
-        const q = "INSERT INTO users(`username`, `email`, `password`) VALUES (?)";
+        var q 
+        if (req.body.accType == "restaurants") {
+            q = "INSERT INTO restaurants(`username`, `email`, `password`) VALUES (?)"
+        } 
+        else{
+            q = "INSERT INTO drivers(`username`, `email`, `password`) VALUES (?)"
+        }
         const values = [
             req.body.username,
             req.body.email,
@@ -30,8 +42,14 @@ export const register = (req, res)=> {
 
 export const login = (req, res)=> {
     //Check User exists
+    var q 
+    if (req.body.accType == "restaurants") {
+        q = "SELECT * FROM restaurants WHERE username = ?"
+    } 
+    else{
+        q = "SELECT * FROM drivers WHERE username = ?"
+    }
 
-    const q = "SELECT * FROM users WHERE username = ?"
 
     db.query(q, [req.body.username], (err, data) => {
         if(err) return res.json(err)

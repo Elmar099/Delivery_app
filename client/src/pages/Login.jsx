@@ -9,8 +9,9 @@ const Login = () => {
   const [inputs, setInputs] = useState({
     username: '',
     password: '', 
+    accType: 'restaurants'
   })
-
+  
   const [err, setError] = useState(null)
 
 const handleChange = e => {
@@ -27,7 +28,11 @@ const handleSubmit = async e => {
   try{
     await login(inputs)
     await axios.post('/auth/login', inputs)
-    navigate('/') 
+    if(inputs.accType === "restaurants") {
+      navigate('/');
+    } else {
+      navigate('/driver');
+    }
   }catch(err) {
     setError(err.response.data)
   }
@@ -41,6 +46,12 @@ const handleSubmit = async e => {
       <form >
         <input type='text' placeholder='Username...' name='username' onChange={handleChange}/>
         <input type='password' placeholder='Password...' name="password" onChange={handleChange}/>
+        <label htmlFor="select">Choose account type:</label>
+        <select name="accType" onChange={handleChange}>
+          <option value="restaurants" defaultValue='restaurants'>Restaurant</option>
+          <option value="drivers">Driver</option>
+
+        </select>
         <button onClick={handleSubmit}>Log in</button>
         {err && <p>{ err }</p>}
         <span>Dont have an account?<Link to='/register'>Register</Link></span>

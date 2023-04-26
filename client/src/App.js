@@ -10,17 +10,29 @@ import Login from "./pages/Login"
 import Single from "./pages/Single"
 import Profile from "./pages/Profile"
 import Driver from "./pages/Driver"
+import Contact from "./pages/Contact"
+import Landing from "./pages/Landing"
 import Write from "./pages/Write"
 import Home from "./pages/Home"
-
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
+import DriverNav from "./components/DriverNav"
+import DriverOrder from "./pages/DriverOrder"
 import "./style.scss" 
 
 const Layout = () => {
   return (
     <>
       <Navbar/>
+      <Outlet/>
+      <Footer/>
+    </>
+  )
+};
+const DriverLayout = () => {
+  return (
+    <>
+      <DriverNav/>
       <Outlet/>
       <Footer/>
     </>
@@ -34,7 +46,7 @@ const router = createBrowserRouter([
   children: [
     {
       path: '/',
-      element: <Home/>,
+      element: <Landing/>,
     },
     {
       path: '/post/:id',
@@ -44,13 +56,33 @@ const router = createBrowserRouter([
       path: '/write',
       element: <Write/>,
     },
+   
+    {
+      path: '/profile',
+      element: <Profile/>,
+    },
+    {
+      path: '/home',
+      element: <Home/>,
+    },
+    {
+      path: '/contact',
+      element: <Contact/>,
+    },
+
+  ],
+},
+{
+  path: '/driver',
+  element: <DriverLayout/>,
+  children: [
     {
       path: '/driver',
       element: <Driver/>,
     },
     {
-      path: '/profile',
-      element: <Profile/>,
+      path: '/driverOrder',
+      element: <DriverOrder/>,
     },
   ],
 },
