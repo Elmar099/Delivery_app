@@ -39,6 +39,7 @@ return (
         <input type='text' placeholder='Username...' name='username' onChange={handleChange}/>
         <input type='text' placeholder='Email...' name='email' onChange={handleChange}/>
         <input type='password' placeholder='Password...' name='password' onChange={handleChange}/>
+        
         <label htmlFor="select">Choose account type:</label>
         <select name="accType" onChange={handleChange}>
           <option value="restaurants" defaultValue='restaurants'>Restaurant</option>
