@@ -8,10 +8,14 @@ const Landing = () => {
             <h1>Welcome to <span>ODFDS</span> </h1>
         </div>
         <div className='home-buttons'>
-        <button>Check us out!</button>
+          
+        <button>
+          <Link className='link' to='/contact'>Reach out to us</Link>
+          
+          </button>
 
         <button>
-          <Link className='link' to='/register'>Create and account</Link>
+          <Link className='link' to='/register'>Create an account</Link>
           
           </button>
         </div>

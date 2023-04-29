@@ -5,15 +5,18 @@ $lightGreen : #78bd39;
     padding: 0 !important;
 }
 .app {
-    display: flex;
-    justify-content: center;
+    height: 100%;
+    
     .container {
-     
-        width: 1024px;
-
         .link {
             text-decoration: none;
             color: inherit;
+
+            &:hover {
+                
+                transition: letter-spacing 0.3s;
+                
+            }
         }
 
         //LOGIN & REGISTER
@@ -75,28 +78,39 @@ $lightGreen : #78bd39;
         }
         //NAVBAR
         .navbar{
+            background-color: rgb(44, 58, 32);
             .container{
                 padding: 20px 0px !important;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                width: 100%;
                 .logo{
                     img{
                         width: 120px;
+                        padding: 0px 20px !important;
                     }
                 }
                 .links{
                     display: flex;
                     align-items: center;
                     gap: 10px;
+                    padding: 0px 20px !important;
 
+                    .navLinks{
+                        transition: all 0.3s;
+                        &:hover {
+                            border-bottom: 1px solid $lightGreen;
+                        }
+                    }
                     .logged {
-                        text-decoration: underline;
+                        color: white;
+                        font-size: 20px;
                     }
                     h6{
-                        font-size: 16px;
+                        font-size: 20px;
                         font-weight: 300;
-                        color: #555;
+                        color: #fff;
                     }
                     span {
                         cursor: pointer;
@@ -110,14 +124,14 @@ $lightGreen : #78bd39;
                         align-items: center;
                         justify-content: center;
                         font-weight: 300;
-                        border: 1px solid rgb(48, 231, 109);
+                        border: 1px solid $lightGreen;
                         transition: all 0.3s;
                         text-decoration: none;
                         color:#555;
 
                         &:hover {
-                            color: rgb(30, 139, 45);
-                            background-color: white;
+                            color: rgb(255, 255, 255);
+                            opacity: 0.8;
                             border: 1px solid $lightGreen;
                         }
                     }
@@ -126,11 +140,13 @@ $lightGreen : #78bd39;
         }
         //FOOTER
         footer {
-            padding: 20px !important;
-            background-color: $lightGreen;
+            
+            background-color: rgb(44, 58, 32);
             display: flex;
+            color: #fff;
             align-items: center;
             justify-content: space-between;
+            padding: 20px 0px !important;
             img {
                 height: 50px;
             }
@@ -144,11 +160,10 @@ $lightGreen : #78bd39;
             background-attachment: fixed;
             position: relative;
             max-width: 100%;
-            height: 50vh;
-            margin-bottom: 100px !important;
-            
+            height: 100vh;
 
             .land-text{
+                height: 60vh;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -164,7 +179,7 @@ $lightGreen : #78bd39;
 
                 button {
                     padding: 10px !important;
-                    border: 1px solid white;
+                    border: 1px solid $lightGreen;
                     border-radius: 8px;
                     background-color: $lightGreen;
                     color: white;
@@ -172,22 +187,19 @@ $lightGreen : #78bd39;
                     cursor: pointer;
 
                     &:hover {
-                        color: rgb(30, 139, 45);
+                        color: $lightGreen;
                         background-color: white;
                         border: 1px solid $lightGreen;
                     }
-                }
-                
-
+                }   
             }
-
-     
-
         }
-
         //HOME
         .home {
-
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
             .posts{
                 margin-top: 20px !important;
                 display: flex;
@@ -203,7 +215,7 @@ $lightGreen : #78bd39;
                     text-align: center;
                     color: $lightGreen;
                     font-size: 46px;
-                    text-decoration: underline;
+                    
                 }
                 .nothing{
                     text-align: center;
@@ -488,13 +500,14 @@ $lightGreen : #78bd39;
             }
             .contact-section {
                 display: flex;
-                width: 100%;
+                margin: 20px 200px !important;
                 justify-content: center;
                 align-items: center;
             }
             .contact-info{
                 line-height: 45px !important;
                 font-size: 18px;
+                
                 border: 1px solid rgb(207, 207, 207);
                 border-radius: 8px;
 
@@ -520,7 +533,7 @@ $lightGreen : #78bd39;
             }
             .contact-form form {
                 position: relative;
-                width: 620px;
+                width: 820px;
             }
             form input, form textarea {
                 width: 100% ;
@@ -533,14 +546,15 @@ $lightGreen : #78bd39;
             }
             form input::placeholder, 
             form textarea::placeholder {
-                color: black;
+                color: rgb(150, 150, 150);
             }
             textarea {
                 resize: none;
                 height: 150px;
             }
             form .send-btn {
-                padding: 20px 80px !important;
+                padding: 20px 430px !important;
+                
                 border: none;
                 border-radius: 8px;
                 cursor: pointer;
@@ -559,12 +573,14 @@ $lightGreen : #78bd39;
             }        
         }
         //DRIVER
-        .map {
-            border: 2px dashed rgb(187, 186, 186);
-            border-radius: 12px;
-            box-shadow: 1px 4px 10px rgba(0, 0, 0, .6);
-            margin: 50px 0px !important;
-
-        }
+        
+            .map {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                border-radius: 12px;
+                margin: 50px 0px !important;
+            }
     }
 }

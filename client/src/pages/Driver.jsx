@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react'
-import Map, {Marker} from 'react-map-gl';
+import Map, {GeolocateControl, Marker, NavigationControl} from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 const Driver = () => {
@@ -10,11 +10,12 @@ const Driver = () => {
   return (
     <div className='map'>
       
-    <Map
+        <Map
       initialViewState={{
         longitude: -121.8853,
         latitude: 37.3387,
         zoom: 14
+      
       }}
       
       style={{
@@ -26,8 +27,16 @@ const Driver = () => {
       mapboxAccessToken={MAPBOX_TOKEN}
     >
       <Marker longitude={-121.8853} latitude={37.3387} color="green" />
-    </Map>
-    </div>
+      <NavigationControl 
+      position='bottom-right'
+      />
+      <GeolocateControl 
+      showUserLocation
+      position='top-left'
+        />
+      
+      </Map>
+      </div>
   )
 }
 

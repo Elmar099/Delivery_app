@@ -17,19 +17,21 @@ const Navbar = () => {
         </div>
         <div className='links'>
           <Link className='link' to="/contact">
-            <h6>CONTACT</h6>
+            <h6 className='navLinks'>CONTACT</h6>
           </Link>
-          <Link className='link' to="/home">
-            <h6>HOME</h6>
+          <Link className='link' to="/landing">
+            <h6 className='navLinks'>HOME</h6>
           </Link>
           
-          <Link className='link' to="/?cat=art">
+          <Link className='link' to="/home">
             {currentUser?
-            <h6>ORDERS</h6> 
+            <h6 className='navLinks'>ORDERS</h6> 
             : <p></p>
           }
             
           </Link>
+</div>
+          <div className='links'>
           <span className='logged'>
             <Link className='link' to="/profile">
               {currentUser?.username}
@@ -38,7 +40,7 @@ const Navbar = () => {
             </span>
           {currentUser ? (
           <span className='write' onClick={logout}>
-           <Link to="/">
+           <Link className='link' to="/">
            Logout
            </Link>
             
@@ -56,8 +58,7 @@ const Navbar = () => {
             ) : <p></p>
             }
             
-          
-        </div>
+          </div>
       </div>
     </div>
   )
