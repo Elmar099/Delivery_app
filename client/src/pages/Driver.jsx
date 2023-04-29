@@ -22,7 +22,7 @@ const Driver = () => {
       height: 500, 
      
     }}
-      mapStyle="mapbox://styles/mapbox/streets-v9"
+      mapStyle="mapbox://styles/mapbox/streets-v12"
       mapboxAccessToken={MAPBOX_TOKEN}
     >
       <Marker longitude={-121.8853} latitude={37.3387} color="green" />
