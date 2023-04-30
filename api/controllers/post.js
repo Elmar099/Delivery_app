@@ -108,3 +108,28 @@ export const updateProfile = (req, res) => {
         })
     })
 }
+
+export const updateDriverProfile = (req, res) => {
+    const token = req.cookies.access_token
+    if(!token) return res.status(401).json("Not authneticated!")
+
+    jwt.verify(token, "jwtkey", (err, userInfo)=> {
+        if (err) return res.status(403).json("Token not valid")
+
+
+        const q = "UPDATE drivers SET F_name=?, L_name=?, drivers_license_number=?, license_plate_number=? WHERE id = ?"
+
+        const values = [
+            req.body.F_name, 
+            req.body.L_name,
+            req.body.drivers_license_number,
+            req.body.license_plate_number,
+        ]
+
+        db.query(q, [...values, userInfo.id], (err, data)=> {
+            if (err) return res.status(500).json(err)
+
+            return res.status(200).json("Profile has been updated!")
+        })
+    })
+}
