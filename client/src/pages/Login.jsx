@@ -23,7 +23,7 @@ const navigate = useNavigate()
 const {login} = useContext(AuthContext)
 
 
-const handleSubmit = async e => {
+const handleSubmit = async (e) => {
   e.preventDefault()
   try{
     await login(inputs)
@@ -55,7 +55,7 @@ const handleSubmit = async e => {
         <button onClick={handleSubmit}>Log in</button>
         {err && <p>{ err }</p>}
         <span>Dont have an account?<Link to='/register'>Register</Link></span>
-        <span>Forgot your password?<Link>Reset password</Link></span>
+        <span>Forgot your password?<Link to='/reset'>Reset password</Link></span>
 
       </form>
     </div>

@@ -19,16 +19,11 @@ const DriverNav = () => {
           <Link className='link' to="/contact">
             <h6>CONTACT</h6>
           </Link>
+          <Link className='link' to="/driverOrder">
+            <h6>ORDERS</h6>
+          </Link>
           <Link className='link' to="/home">
             <h6>HOME</h6>
-          </Link>
-          
-          <Link className='link' to="/driverOrder">
-            {currentUser?
-            <h6>ORDERS</h6> 
-            : <p></p>
-          }
-            
           </Link>
           <span className='logged'>
             <Link className='link' to="/profile">
@@ -38,7 +33,7 @@ const DriverNav = () => {
             </span>
           {currentUser ? (
           <span className='write' onClick={logout}>
-           <Link to="/">
+           <Link className='link' to="/">
            Logout
            </Link>
             

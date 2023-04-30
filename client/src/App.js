@@ -16,6 +16,7 @@ import Write from "./pages/Write"
 import Home from "./pages/Home"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
+import Reset from "./pages/Reset"
 import DriverNav from "./components/DriverNav"
 import DriverOrder from "./pages/DriverOrder"
 import "./style.scss" 
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
 {
   path: "/login",
   element: <Login />,
+},
+{
+  path: "/reset",
+  element: <Reset />,
 },
 ])
 

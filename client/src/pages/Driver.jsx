@@ -31,7 +31,7 @@ const Driver = () => {
       position='bottom-right'
       />
       <GeolocateControl 
-      showUserLocation
+      trackUserLocation
       position='top-left'
         />
       
