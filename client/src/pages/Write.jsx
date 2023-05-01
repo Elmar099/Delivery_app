@@ -1,9 +1,10 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { AddressAutofill } from '@mapbox/search-js-react';
 
 const Write = () => {
-
+  const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
   const state = useLocation().state
   
   const [title, setTitle] = useState(state?.title || "")
@@ -34,8 +35,21 @@ const Write = () => {
       <label htmlFor="orderName">Order name</label>
 
         <input type="text" name='orderName' value={title} placeholder='Order for...' onChange={(e)=>setTitle(e.target.value)}/>
-        <label htmlFor="location">Location</label>
-        <input type="text" value={locate} name='location' placeholder='Location...' onChange={e=>setLocate(e.target.value)}/>
+        {/* <label htmlFor="location">Location</label>
+        <input type="text" value={locate} name='location' placeholder='Location...' onChange={e=>setLocate(e.target.value)}/> */}
+        <form>
+          <AddressAutofill accessToken={MAPBOX_TOKEN}>
+            <input
+            type="text"
+            name='location' 
+            placeholder='Location...'
+            autoComplete="address-level1"
+            value={locate}
+            onChange={(e) => setLocate(e.target.value)}
+            />
+          </AddressAutofill>
+
+        </form>
         <label htmlFor="orderD">Order details</label>
         <textarea className='editor' name='orderD' value={value} placeholder='Order details...' onChange={e=>setValue(e.target.value)}/>
         

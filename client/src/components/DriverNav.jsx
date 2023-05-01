@@ -33,7 +33,7 @@ const DriverNav = () => {
             </span>
           {currentUser ? (
           <span className='write' onClick={logout}>
-           <Link className='link' to="/">
+           <Link className='link' to="/driverHome">
            Logout
            </Link>
             

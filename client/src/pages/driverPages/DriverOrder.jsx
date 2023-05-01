@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { useEffect} from 'react'
 import { useState } from 'react'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import axios from 'axios'
 import { AuthContext } from "../../context/authContext"
 import { useNavigate } from 'react-router-dom'
@@ -56,7 +56,8 @@ function handleClick(index) {
     <div className='home'>
       <div className="posts">
           <h1>~Available Orders~</h1>
-      {posts.map((post, index)=>(
+      {currentUser ?
+      posts.map((post, index)=>(
         <div className="post" key={post.id}>
           <div className='img'>
             <img src="https://img.freepik.com/premium-vector/good-food-logo-design_79169-10.jpg?w=2000" alt="" />
@@ -75,6 +76,7 @@ function handleClick(index) {
           </div>
         </div>
         ))
+        : <p className="noOrders"><br>Need to login.</br></p>
       }
       </div>
     </div>
