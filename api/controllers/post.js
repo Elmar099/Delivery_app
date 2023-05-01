@@ -92,7 +92,6 @@ export const updateProfile = (req, res) => {
     jwt.verify(token, "jwtkey", (err, userInfo)=> {
         if (err) return res.status(403).json("Token not valid")
     
-
         const q = "UPDATE restaurants SET `name`=?, `address`=?, `license_number`=? WHERE `id` = ?"
 
         const values = [
