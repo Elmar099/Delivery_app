@@ -460,7 +460,9 @@ $lightGreen : #78bd39;
 
         //Profile 
         .profile{
-
+                display: flex;
+                align-items: center;
+                justify-content: center;
             h1{
                 text-align: center;
                 text-decoration: underline;
@@ -468,8 +470,11 @@ $lightGreen : #78bd39;
             }
 
             form {
+                margin: 30px 0px !important;
                 display: flex;
                 flex-direction: column;
+                justify-content: center;
+                align-items: center;
                 padding: 50px !important;
                 border: 1px solid rgb(184, 175, 175);
                 border-radius: 8px;
@@ -484,6 +489,25 @@ $lightGreen : #78bd39;
                 border: 1px solid rgb(219, 217, 217);
                 border-radius: 8px;
                 border-bottom: 1px solid gray ;
+            }
+            button {
+                padding: 10px 70px !important;
+                margin-top: 20px !important;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                background-color: $lightGreen;
+                border: 1px solid $lightGreen;
+                transition: all 0.3s;
+                color: #555;
+                font-size: 18px;
+
+                &:hover {
+                    color: rgb(22, 109, 48);
+                    background-color: white;
+                    border: 1px solid $lightGreen;
+                }
+
             }
         }
 

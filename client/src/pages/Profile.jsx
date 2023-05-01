@@ -43,7 +43,7 @@ const Profile = () => {
               <label htmlFor="resName">License Number</label>
               <input type="text" placeholder='License Number' name='license_number' onChange={handleChange}/>
 
-              <button onClick={handleSubmit}>Save</button>
+              <button onClick={handleSubmit} >Save</button>
             </form>
           </div>
           

@@ -6,7 +6,7 @@ import {
     getPosts, 
     updatePost,
     updateProfile,
-    updateProfile
+    updateDriverProfile,
 } from '../controllers/post.js'
 
 const router = express.Router()
@@ -16,6 +16,6 @@ router.get("/:id", getPost)
 router.post("/", addPost)
 router.delete("/:id", deletePost)
 router.put("/:id", updatePost)
-router.put("/:id", updateProfile)
-
+router.put("/", updateProfile)
+router.put("/", updateDriverProfile)
 export default router

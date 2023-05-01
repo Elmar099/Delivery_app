@@ -11,9 +11,9 @@ const DriverNav = () => {
     <div className='navbar'>
       <div className='container'>
         <div className='logo'>
-          <Link to='/'>
+          {/* <Link to='/'> */}
             <img src={Logo} alt='' />
-          </Link>
+          {/* </Link> */}
         </div>
         <div className='links'>
           <Link className='link' to="/contact">
@@ -26,7 +26,7 @@ const DriverNav = () => {
             <h6>HOME</h6>
           </Link>
           <span className='logged'>
-            <Link className='link' to="/profile">
+            <Link className='link' to="/driverProfile">
               {currentUser?.username}
             </Link>
             
