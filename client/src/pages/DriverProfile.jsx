@@ -10,6 +10,7 @@ const DriverProfile = () => {
     l_name: '',
     drivers_license: '',
     license_plate: '',
+    // accType: 'drivers'
   })
   const [err, setError] = useState(null)
 
@@ -22,8 +23,8 @@ const DriverProfile = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     try{
-      await axios.put('/', inputs)
-      navigate('/landing')
+      await axios.put('/driverPosts/', inputs)
+      navigate('/driverProfile')
     }catch(err) {
       setError(err.response.data)
     }
@@ -36,6 +37,9 @@ const DriverProfile = () => {
           <div>
             <h1 >Profile</h1>
             <form>
+              <select name="accType">
+                <option value="drivers" defaultValue='drivers'>Driver</option>
+              </select>
               <label htmlFor="resName">First Name</label>
               <input type="text" placeholder='First Name...' name='f_name' onChange={handleChange} />
               <label htmlFor="location">Last Name</label>
@@ -46,7 +50,6 @@ const DriverProfile = () => {
               <input type="text" placeholder='License Plate' name='license_plate' onChange={handleChange}/>
 
               <button onClick={handleSubmit}>Save</button>
-              {err && <p>{ err }</p>}
             </form>
           </div>
           

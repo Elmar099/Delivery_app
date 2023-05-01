@@ -74,8 +74,6 @@ const router = createBrowserRouter([
         path: '/contact',
         element: <Contact/>,
       },
-
-
     ],
   },
   {
@@ -92,7 +90,7 @@ const router = createBrowserRouter([
       {
         path: '/driverProfile',
         element: <DriverProfile/>,
-      }
+      },
     ],
   },
   {

@@ -3,6 +3,7 @@ import authRoutes from './routes/auth.js'
 import postRoutes from './routes/posts.js'
 import userRoutes from './routes/users.js'
 import cookieParser from 'cookie-parser'
+import driverRoutes from './routes/driverPosts.js'
 
 
 const app = express()
@@ -13,6 +14,7 @@ app.use(cookieParser())
 app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/posts', postRoutes)
+app.use('/api/driverPosts', driverRoutes)
 
 
 

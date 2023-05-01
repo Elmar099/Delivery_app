@@ -8,7 +8,8 @@ const Profile = () => {
   const [inputs, setInputs] = useState({
     name: '',
     address: '',
-    license_number: ''
+    license_number: '',
+    accType: 'restaurants'
   })
   const [err, setError] = useState(null)
 
@@ -35,6 +36,9 @@ const Profile = () => {
           <div>
             <h1 >Profile</h1>
             <form>
+              <select name="accType">
+                <option value="restaurants" defaultValue='restaurants'>Restaurant</option>
+              </select>
               <label htmlFor="resName">Restaurant Name</label>
               <input type="text" placeholder='Restaurant Name...' name='name' onChange={handleChange} />
               <label htmlFor="location">Location</label>
