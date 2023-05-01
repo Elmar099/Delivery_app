@@ -17,5 +17,5 @@ router.post("/", addPost)
 router.delete("/:id", deletePost)
 router.put("/:id", updatePost)
 router.put("/", updateProfile)
-router.put("/", updateDriverProfile)
+router.post("/", updateDriverProfile)
 export default router

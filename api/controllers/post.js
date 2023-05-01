@@ -122,7 +122,7 @@ export const updateDriverProfile = (req, res) => {
         if (err) return res.status(403).json("Token not valid")
 
 
-        const q = "UPDATE drivers SET `f_name`=?, `l_name`=?, `drivers_license`=?, `license_plate`=? WHERE `id` = ?"
+        const q = "UPDATE drivers SET `f_name`=?, `l_name`=?, `drivers_license`=?, `license_plate`=? WHERE `driverid` = ?"
 
         const values = [
             req.body.f_name, 
