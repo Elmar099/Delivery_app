@@ -25,3 +25,13 @@ export const updateDriverProfile = (req, res) => {
         })
     })
 }
+
+export const getOrders = (req, res) => {
+    const q = "SELECT title, details, locate, address FROM orders, restaurants where uid = restaurants.id and did IS NULL and requested = 1"
+
+    db.query(q, (err, data) => {
+        if(err) return res.send(err)
+
+        return res.status(200).json(data)
+    })
+}

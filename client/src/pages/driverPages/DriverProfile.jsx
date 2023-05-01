@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useState} from 'react'
+import { AuthContext } from '../../context/authContext'
 
 
 const DriverProfile = () => {
+
+  const { currentUser } = useContext(AuthContext)
+
   const [inputs, setInputs] = useState({
     f_name: '',
     l_name: '',
     drivers_license: '',
     license_plate: '',
-    // accType: 'drivers'
   })
   const [err, setError] = useState(null)
 
@@ -37,17 +40,14 @@ const DriverProfile = () => {
           <div>
             <h1 >Profile</h1>
             <form>
-              <select name="accType">
-                <option value="drivers" defaultValue='drivers'>Driver</option>
-              </select>
               <label htmlFor="resName">First Name</label>
-              <input type="text" placeholder='First Name...' name='f_name' onChange={handleChange} />
+              <input type="text" placeholder= {currentUser.f_name} name='f_name' onChange={handleChange} />
               <label htmlFor="location">Last Name</label>
-              <input type="text" placeholder='Last Name' name='l_name' onChange={handleChange}/>            
+              <input type="text" placeholder={currentUser.l_name} name='l_name' onChange={handleChange}/>            
               <label htmlFor="resName">License Number</label>
-              <input type="text" placeholder='Drivers License Number' name='drivers_license' onChange={handleChange}/>
+              <input type="text" placeholder={currentUser.drivers_license} name='drivers_license' onChange={handleChange}/>
               <label htmlFor="resName">License Plate</label>
-              <input type="text" placeholder='License Plate' name='license_plate' onChange={handleChange}/>
+              <input type="text" placeholder={currentUser.license_plate} name='license_plate' onChange={handleChange}/>
 
               <button onClick={handleSubmit}>Save</button>
             </form>

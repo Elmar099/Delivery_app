@@ -23,7 +23,7 @@ const Write = () => {
       await axios.post(`/posts/`, {
         title, locate, desc:value,
       })
-      navigate('/home')
+      navigate('/order')
     } catch(err) {
         console.log(err)
     }

@@ -11,18 +11,18 @@ const DriverNav = () => {
     <div className='navbar'>
       <div className='container'>
         <div className='logo'>
-          {/* <Link to='/'> */}
+          <Link to='/driverHome'>
             <img src={Logo} alt='' />
-          {/* </Link> */}
+          </Link>
         </div>
         <div className='links'>
-          <Link className='link' to="/contact">
+          <Link className='link' to="/driverContact">
             <h6>CONTACT</h6>
           </Link>
           <Link className='link' to="/driverOrder">
             <h6>ORDERS</h6>
           </Link>
-          <Link className='link' to="/home">
+          <Link className='link' to="/driverHome">
             <h6>HOME</h6>
           </Link>
           <span className='logged'>

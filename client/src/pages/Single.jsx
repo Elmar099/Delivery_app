@@ -30,7 +30,7 @@ const Single = () => {
   const handleDelete = async ()=>{
     try {
       await axios.delete(`/posts/${postId}`);
-      navigate("/home")
+      navigate("/order")
     } catch (err) {
       console.log(err);
     }
