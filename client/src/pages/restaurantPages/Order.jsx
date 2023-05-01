@@ -81,7 +81,7 @@ const Order = () => {
             <p>{post.locate}</p>
            
             <button onClick={() => handleClick(index)}>
-              {post.requested == 1 ? 'Requested' : 'Request Driver'}
+              {post.requested === 1 ? 'Requested' : 'Request Driver'}
             </button>
              {/* {post.requested && <div className="requested">Driver has been requested!</div>} */}
           </div>

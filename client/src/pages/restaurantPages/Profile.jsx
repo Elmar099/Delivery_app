@@ -42,12 +42,12 @@ const Profile = () => {
             <h1 >Profile</h1>
             <form>
               <label htmlFor="resName">Restaurant Name</label>
-              <input type="text" placeholder={currentUser.name} name='name' onChange={handleChange} />
+              <input type="text" placeholder="Name..." name='name' onChange={handleChange} />
               <label htmlFor="location">Location</label>
-              <input type="text" placeholder={currentUser.address} name='address' onChange={handleChange}/>
+              <input type="text" placeholder="Address..." name='address' onChange={handleChange}/>
               
               <label htmlFor="resName">License Number</label>
-              <input type="text" placeholder={currentUser.license_number} name='license_number' onChange={handleChange}/>
+              <input type="text" placeholder="License Number" name='license_number' onChange={handleChange}/>
 
               <button onClick={handleSubmit} >Save</button>
             </form>
