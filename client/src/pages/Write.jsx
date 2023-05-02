@@ -44,7 +44,7 @@ const Write = () => {
             type="text"
             name='location' 
             placeholder='Location...'
-            autoComplete="address-level1"
+            autoComplete="address-level0"
             value={locate}
             
             onChange={(e) => setLocate(e.target.value)}

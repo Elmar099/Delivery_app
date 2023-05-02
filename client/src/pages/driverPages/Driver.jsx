@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react'
-import Map, {GeolocateControl, Marker, NavigationControl} from 'react-map-gl';
+import Map, {AttributionControl, GeolocateControl, Marker, NavigationControl} from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 
 const Driver = () => {
-  const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
-
-  
+  const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;  
   return (
     <div className='map'>
       
@@ -27,18 +25,16 @@ const Driver = () => {
         mapStyle="mapbox://styles/mapbox/streets-v12"
         mapboxAccessToken={MAPBOX_TOKEN}
       >
-      {/* <Marker longitude={-121.8853} latitude={37.3387} color="green" /> */}
+      
         <NavigationControl position='bottom-right'/>
         <GeolocateControl 
         trackUserLocation
+        showUserLocation
+      
         position='top-left'
           />
-        
-        
-      
-      
       </Map>
-      </div>
+    </div>
   )
 }
 
