@@ -76,8 +76,11 @@ const Order = () => {
             <Link className='link' to={`/post/${post.id}`}>
               <h2 className="title">{post.title}</h2>
             </Link>
-            <p>{post.desc}</p>
-            <p>{post.locate}</p>
+            <p>{post.details}</p>
+            <p>{JSON.parse(post.locate)["address address-search"]}</p>
+            <p>{JSON.parse(post.locate).apartment}</p>
+            <p>{JSON.parse(post.locate).city},{JSON.parse(post.locate).state},{JSON.parse(post.locate).country}</p>
+            <p>{JSON.parse(post.locate).postcode}</p>
            
            
               {post.requested === 1 ?

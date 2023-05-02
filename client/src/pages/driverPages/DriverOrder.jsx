@@ -67,10 +67,16 @@ function handleClick(index) {
           <div className="content">
             <h2 className="title">{post.title}</h2>
             <p>{post.details}</p>
-            <p>Restaurant Location</p>
-            <p>{post.address}</p>
-            <p>Customer Address</p>
-            <p>{post.locate}</p>
+            <b>Restaurant Location</b>
+            <p>{JSON.parse(post.address)["address address-search"]}</p>
+            <p>{JSON.parse(post.address).apartment}</p>
+            <p>{JSON.parse(post.address).city},{JSON.parse(post.address).state},{JSON.parse(post.address).country}</p>
+            <p>{JSON.parse(post.address).postcode}</p>
+            <b>Customer Address</b>
+            <p>{JSON.parse(post.locate)["address address-search"]}</p>
+            <p>{JSON.parse(post.locate).apartment}</p>
+            <p>{JSON.parse(post.locate).city},{JSON.parse(post.address).state},{JSON.parse(post.address).country}</p>
+            <p>{JSON.parse(post.locate).postcode}</p>
 
             <button onClick={() => handleClick(index)}>
               Accept Delivery

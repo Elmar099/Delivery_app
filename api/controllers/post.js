@@ -131,9 +131,9 @@ export const updateProfile = (req, res) => {
         const q = "UPDATE restaurants SET `name`=?, `address`=?, `license_number`=? WHERE `id` = ?"
 
         const values = [
-            req.body.name, 
-            req.body.address,
-            req.body.license_number,
+            req.body.inputs.name, 
+            req.body.locate,
+            req.body.inputs.license_number,
         ]
 
         db.query(q, [...values, userInfo.id], (err, data)=> {
