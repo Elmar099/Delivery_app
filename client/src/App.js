@@ -8,19 +8,22 @@ import {
 import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Single from "./pages/Single"
-import Profile from "./pages/Profile"
-import Driver from "./pages/Driver"
-import Contact from "./pages/Contact"
-import Landing from "./pages/Landing"
+import Profile from "./pages/restaurantPages/Profile"
+import Driver from "./pages/driverPages/Driver"
+import Contact from "./pages/restaurantPages/Contact"
+import Landing from "./pages/restaurantPages/Home"
 import Write from "./pages/Write"
-import Home from "./pages/Home"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 import Reset from "./pages/Reset"
 import DriverNav from "./components/DriverNav"
-import DriverOrder from "./pages/DriverOrder"
+import DriverOrder from "./pages/driverPages/DriverOrder"
 import "./style.scss" 
-import DriverProfile from "./pages/DriverProfile";
+import DriverProfile from "./pages/driverPages/DriverProfile";
+import Order from "./pages/restaurantPages/Order";
+import Home from "./pages/restaurantPages/Home";
+import DriverHome from "./pages/driverPages/DriverHome";
+import DriverContact from "./pages/driverPages/DriverContact";
 
 const Layout = () => {
   return (
@@ -63,19 +66,17 @@ const router = createBrowserRouter([
         element: <Profile/>,
       },
       {
-        path: '/home',
-        element: <Home/>,
+        path: '/order',
+        element: <Order/>,
       },
       {
-        path: '/landing',
-        element: <Landing/>,
+        path: '/home',
+        element: <Home/>,
       },
       {
         path: '/contact',
         element: <Contact/>,
       },
-
-
     ],
   },
   {
@@ -93,7 +94,15 @@ const router = createBrowserRouter([
       {
         path: '/driverProfile',
         element: <DriverProfile/>,
-      }
+      },
+      {
+        path: '/driverHome',
+        element: <DriverHome/>,
+      },
+      {
+        path: '/driverContact',
+        element: <DriverContact/>,
+      },
     ],
   },
   {

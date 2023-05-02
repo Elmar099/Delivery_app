@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const Landing = () => {
+const Home = () => {
   return (
     <div className='land'>
         <div className='land-text'>
@@ -25,4 +25,4 @@ const Landing = () => {
   )
 }
 
-export default Landing
+export default Home

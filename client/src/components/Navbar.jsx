@@ -19,11 +19,11 @@ const Navbar = () => {
           <Link className='link' to="/contact">
             <h6 className='navLinks'>CONTACT</h6>
           </Link>
-          <Link className='link' to="/landing">
+          <Link className='link' to="/home">
             <h6 className='navLinks'>HOME</h6>
           </Link>
           
-          <Link className='link' to="/home">
+          <Link className='link' to="/order">
             {currentUser?
             <h6 className='navLinks'>ORDERS</h6> 
             : <p></p>

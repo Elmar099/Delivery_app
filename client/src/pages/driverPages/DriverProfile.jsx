@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useState} from 'react'
+import { AuthContext } from '../../context/authContext'
 
 
 const DriverProfile = () => {
-  
 
   const [inputs, setInputs] = useState({
     f_name: '',
@@ -24,7 +24,7 @@ const DriverProfile = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     try{
-      await axios.put('/posts/', inputs)
+      await axios.put('/driverPosts/', inputs)
       navigate('/driver')
     }catch(err) {
       setError(err.response.data)
@@ -38,14 +38,14 @@ const DriverProfile = () => {
           <div>
             <h1 >Profile</h1>
             <form>
-              <label htmlFor="fName">First Name</label>
-              <input type="text" placeholder='First Name...' name='f_name' onChange={handleChange} />
-              <label htmlFor="lName">Last Name</label>
-              <input type="text" placeholder='Last Name' name='l_name' onChange={handleChange}/>            
-              <label htmlFor="LNum">License Number</label>
-              <input type="text" placeholder='Drivers License Number' name='drivers_license' onChange={handleChange}/>
-              <label htmlFor="cPlate">Car Plate</label>
-              <input type="text" placeholder='License Plate' name='license_plate' onChange={handleChange}/>
+              <label htmlFor="resName">First Name</label>
+              <input type="text" placeholder= "First Name..." name='f_name' onChange={handleChange} />
+              <label htmlFor="location">Last Name</label>
+              <input type="text" placeholder="Last Name..." name='l_name' onChange={handleChange}/>            
+              <label htmlFor="resName">License Number</label>
+              <input type="text" placeholder="License Number..." name='drivers_license' onChange={handleChange}/>
+              <label htmlFor="resName">License Plate</label>
+              <input type="text" placeholder="License Plate..." name='license_plate' onChange={handleChange}/>
 
               <button onClick={handleSubmit}>Save</button>
             </form>

@@ -26,7 +26,7 @@ const Driver = () => {
       mapStyle="mapbox://styles/mapbox/streets-v12"
       mapboxAccessToken={MAPBOX_TOKEN}
     >
-      <Marker longitude={-121.8853} latitude={37.3387} color="green" />
+      {/* <Marker longitude={-121.8853} latitude={37.3387} color="green" /> */}
       <NavigationControl 
       position='bottom-right'
       />

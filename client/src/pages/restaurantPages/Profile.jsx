@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useState} from 'react'
+import { AuthContext } from '../../context/authContext'
+import { useEffect} from 'react'
 
 
 const Profile = () => {
+
+  const { currentUser } = useContext(AuthContext)
+
+
   const [inputs, setInputs] = useState({
     name: '',
     address: '',
-    license_number: ''
+    license_number: '',
   })
   const [err, setError] = useState(null)
 
@@ -22,7 +28,7 @@ const Profile = () => {
     e.preventDefault()
     try{
       await axios.put('/posts/', inputs)
-      navigate('/landing')
+      navigate('/home')
     }catch(err) {
       setError(err.response.data)
     }
@@ -36,12 +42,12 @@ const Profile = () => {
             <h1 >Profile</h1>
             <form>
               <label htmlFor="resName">Restaurant Name</label>
-              <input type="text" placeholder='Restaurant Name...' name='name' onChange={handleChange} />
+              <input type="text" placeholder="Name..." name='name' onChange={handleChange} />
               <label htmlFor="location">Location</label>
-              <input type="text" placeholder='Location...' name='address' onChange={handleChange}/>
+              <input type="text" placeholder="Address..." name='address' onChange={handleChange}/>
               
               <label htmlFor="resName">License Number</label>
-              <input type="text" placeholder='License Number' name='license_number' onChange={handleChange}/>
+              <input type="text" placeholder="License Number" name='license_number' onChange={handleChange}/>
 
               <button onClick={handleSubmit} >Save</button>
             </form>
