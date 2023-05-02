@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useState} from 'react'
 import { AuthContext } from '../../context/authContext'
-import { useEffect} from 'react'
 
 
 const Profile = () => {
@@ -33,9 +32,6 @@ const Profile = () => {
       setError(err.response.data)
     }
   }
-
-  
-
     return (
         <div className='profile'>
           <div>
