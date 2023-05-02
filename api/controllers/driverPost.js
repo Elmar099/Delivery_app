@@ -42,26 +42,27 @@ export const acceptOrder = (req, res) => {
 
     jwt.verify(token, "jwtkey", (err, userInfo)=> {
         if (err) return res.status(403).json("Token not valid")
-
-        // if (userInfo.number_orders >= 2) {
-        //     return res.json()
-        // }
+        // const l = "SELECT * FROM drivers WHERE id=?"
+        // db.query(l,[userInfo.id], (err, data) => {
+        //     if (data.number_orders <= 1){
+        //         const i = "SELECT * FROM orders WHERE "
+        //         return res.json("can't have more than 2")
+        //     }
+        // })
         const postId = req.body.postId
         const q = "UPDATE orders SET `did`=? WHERE `id` = ? "
-        // const p = "UPDATE drivers SET `number_orders`= `number_orders` + 1 WHERE `id` = ?"
+        const p = "UPDATE drivers SET `number_orders`= `number_orders` + 1 WHERE `id` = ?"
         
         // const values = [
         //     req.body.did,
         // ]
-        // db.query(p, [userInfo.id], (err, data) => {
-        //     if(err) return res.status(500).json(err)
-
-        //     return res.json("Post has been updatedLOLOLO!")
-        // })
-        db.query(q, [userInfo.id, postId], (err, data)=> {
-            if (err) return res.status(500).json(err)
-
-            return res.json("Post has been updatedLOLOLO!")
+        db.query(p, [userInfo.id], (err, data) => {
+            if(err) return res.status(500).json(err)
+            db.query(q, [userInfo.id, postId], (err, data)=> {
+                if (err) return res.status(500).json(err)
+    
+                return res.json("Post has been updatedLOLOLO!")
+            })
         })
     })
 }

@@ -9,8 +9,19 @@ const Write = () => {
   
   const [title, setTitle] = useState(state?.title || "")
   const [value, setValue] = useState(state?.desc || "")
-  const [locate, setLocate] = useState(state?.locate || "")
+  const [locate, setLocate] = useState({
+    "address address-search": '',
+    apartment: '',
+    city:'',
+    state: '',
+    country: '',
+    postcode: '',
+  })
   const navigate = useNavigate()
+
+  const handleChange = e => {
+    setLocate(prev=>({...prev, [e.target.name]: e.target.value}))
+  }
 
   const handleClick = async (e) => {
     e.preventDefault()
@@ -18,11 +29,11 @@ const Write = () => {
       state ? 
       await axios.put(`/posts/${state.id}`, {
         
-        title, locate, desc:value,
+        title, locate:JSON.stringify(locate), desc:value,
       })
       :
       await axios.post(`/posts/`, {
-        title, locate, desc:value,
+        title, locate:JSON.stringify(locate), desc:value,
       })
       navigate('/order')
     } catch(err) {
@@ -37,18 +48,46 @@ const Write = () => {
         <input type="text" name='orderName' value={title} placeholder='Order for...' onChange={(e)=>setTitle(e.target.value)}/>
         {/* <label htmlFor="location">Location</label>
         <input type="text" value={locate} name='location' placeholder='Location...' onChange={e=>setLocate(e.target.value)}/> */}
-        <form>
+        {/* <form>
           <AddressAutofill accessToken={MAPBOX_TOKEN}>
             <input
             type="text"
             name='location' 
             placeholder='Location...'
-            autoComplete="address-level1"
+            autoComplete="street-address"
             value={locate}
             onChange={(e) => setLocate(e.target.value)}
             />
           </AddressAutofill>
 
+        </form> */}
+        <form>
+          <AddressAutofill accessToken={MAPBOX_TOKEN}>
+          <input
+          name="address" placeholder="Address" type="text"
+          autoComplete="address-line1" onChange={handleChange}
+          />
+          </AddressAutofill>
+          <input
+          name="apartment" placeholder="Apartment number" type="text"
+          autoComplete="address-line2" onChange={handleChange}
+          />
+          <input
+          name="city" placeholder="City" type="text"
+          autoComplete="address-level2" onChange={handleChange}
+          />
+          <input
+          name="state" placeholder="State" type="text"
+          autoComplete="address-level1" onChange={handleChange}
+          />
+          <input
+          name="country" placeholder="Country" type="text"
+          autoComplete="country" onChange={handleChange}
+          />
+          <input
+          name="postcode" placeholder="Postcode" type="text"
+          autoComplete="postal-code" onChange={handleChange}
+          />
         </form>
         <label htmlFor="orderD">Order details</label>
         <textarea className='editor' name='orderD' value={value} placeholder='Order details...' onChange={e=>setValue(e.target.value)}/>
