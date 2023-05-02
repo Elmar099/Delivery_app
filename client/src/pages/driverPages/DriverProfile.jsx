@@ -2,11 +2,9 @@ import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useState} from 'react'
-import { AuthContext } from '../../context/authContext'
 
 
 const DriverProfile = () => {
-
 
   const [inputs, setInputs] = useState({
     f_name: '',
@@ -16,7 +14,7 @@ const DriverProfile = () => {
   })
   const [err, setError] = useState(null)
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setInputs(prev =>({...prev, [e.target.name]: e.target.value}))
   }
 

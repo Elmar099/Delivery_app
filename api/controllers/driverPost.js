@@ -9,7 +9,7 @@ export const updateDriverProfile = (req, res) => {
         if (err) return res.status(403).json("Token not valid")
 
 
-        const q = "UPDATE drivers SET F_name=?, L_name=?, drivers_license=?, license_plate=? WHERE `id` = ?"
+        const q = "UPDATE drivers SET f_name=?, l_name=?, drivers_license=?, license_plate=? WHERE `id` = ?"
 
         const values = [
             req.body.f_name, 
@@ -27,7 +27,7 @@ export const updateDriverProfile = (req, res) => {
 }
 
 export const getOrders = (req, res) => {
-    const q = "SELECT orders.id, title, details, locate, address, did FROM orders, restaurants where uid = restaurants.id and did IS NULL and requested = 1"
+    const q = "SELECT orders.id, title, details, locate, address, did FROM orders, restaurants WHERE uid = restaurants.id AND did IS NULL AND requested = 1"
 
     db.query(q, (err, data) => {
         if(err) return res.send(err)

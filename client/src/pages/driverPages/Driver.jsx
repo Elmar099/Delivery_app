@@ -2,9 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { useState } from 'react'
 import ReactMapGL , {GeolocateControl, Marker, NavigationControl} from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css'
-import mapboxgl from 'mapbox-gl';
-// import turf from '@turf/turf';
-// import polyline from '@mapbox/polyline';
+
 
 const Driver = () => {
   const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
@@ -30,9 +28,7 @@ const Driver = () => {
         mapboxAccessToken={MAPBOX_TOKEN}
       >
       {/* <Marker longitude={-121.8853} latitude={37.3387} color="green" /> */}
-        <NavigationControl 
-        position='bottom-right'
-        />
+        <NavigationControl position='bottom-right'/>
         <GeolocateControl 
         trackUserLocation
         position='top-left'

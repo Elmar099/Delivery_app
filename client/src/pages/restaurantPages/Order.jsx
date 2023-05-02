@@ -10,7 +10,7 @@ import { AuthContext } from "../../context/authContext"
 const Order = () => {
   const [posts, setPosts] = useState([])
   const { currentUser } = useContext(AuthContext);
-
+  
   useEffect(()=>{
     const fetchData = async ()=>{
       try{
@@ -23,7 +23,6 @@ const Order = () => {
     fetchData()
   }, []);
 
-  // const [isDriverRequested, setIsDriverRequested] = useState(false);
 
   // const handleClick = () => {
   //   setIsDriverRequested(true);
@@ -83,9 +82,12 @@ const Order = () => {
             <p>{JSON.parse(post.locate).city},{JSON.parse(post.locate).state},{JSON.parse(post.locate).country}</p>
             <p>{JSON.parse(post.locate).postcode}</p>
            
-            <button onClick={() => handleClick(index)}>
-              {post.requested === 1 ? 'Requested' : 'Request Driver'}
-            </button>
+           
+              {post.requested === 1 ?
+                  <div className="requested">requested!</div> : 
+               <button onClick={() => handleClick(index)}>Request driver</button>
+              }
+            
              {/* {post.requested && <div className="requested">Driver has been requested!</div>} */}
           </div>
         </div>

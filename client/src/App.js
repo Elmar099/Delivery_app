@@ -46,6 +46,7 @@ const DriverLayout = () => {
 
 const router = createBrowserRouter([
   {
+    path: '/',
     element: <Layout/>,
     children: [
       {
@@ -60,7 +61,6 @@ const router = createBrowserRouter([
         path: '/write',
         element: <Write/>,
       },
-    
       {
         path: '/profile',
         element: <Profile/>,
@@ -80,6 +80,7 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: '/',
     element: <DriverLayout/>,
     children: [
       {

@@ -10,7 +10,7 @@ const DriverHome = () => {
         <div className='home-buttons'>
           
         <button>
-          <Link className='link' to='/contact'>Reach out to us</Link>
+          <Link className='link' to='/driverContact'>Reach out to us</Link>
           
           </button>
 

@@ -46,9 +46,6 @@ const Profile = () => {
       setError(err.response.data)
     }
   }
-
-  
-
     return (
         <div className='profile'>
           <div>

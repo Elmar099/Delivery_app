@@ -9,13 +9,14 @@ import { useNavigate } from 'react-router-dom'
 const DriverOrder = () => {
   const { currentUser } = useContext(AuthContext);
   const [posts, setPosts] = useState([])
+  const [err, setError] = useState(null)
   useEffect(()=>{
     const fetchData = async ()=>{
       try{
-        const res = await axios.get("/driverPosts")
+        const res = await axios.get("/driverPosts/")
         setPosts(res.data)
       } catch (err) {
-        console.log(err)
+        setError(err.response.data)
       }
     };
     fetchData();
@@ -37,6 +38,7 @@ function handleClick(index) {
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({postId,  did: newDid })
   };
+
   fetch(`/driverPosts/${postId}`, requestOptions)
     .then(response => response.json())
     .then(data => {
@@ -79,6 +81,7 @@ function handleClick(index) {
             <button onClick={() => handleClick(index)}>
               Accept Delivery
             </button>
+            { err && <p>{err}</p> }
           </div>
         </div>
         ))

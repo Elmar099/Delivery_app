@@ -40,6 +40,7 @@ const Write = () => {
         console.log(err)
     }
   }
+  
   return (
     <div className="add">
       <div className="content">
@@ -56,6 +57,7 @@ const Write = () => {
             placeholder='Location...'
             autoComplete="street-address"
             value={locate}
+            
             onChange={(e) => setLocate(e.target.value)}
             />
           </AddressAutofill>
