@@ -15,15 +15,20 @@ const DriverNav = () => {
             <img src={Logo} alt='' />
           </Link>
         </div>
+        
         <div className='links'>
           <Link className='link' to="/driverContact">
-            <h6>CONTACT</h6>
+          <h6 className='navLinks'>CONTACT</h6>
           </Link>
+          {currentUser ? (
           <Link className='link' to="/driverOrder">
-            <h6>ORDERS</h6>
+            <h6 className='navLinks'>ORDERS</h6> 
           </Link>
+        ) : (
+          <p></p>
+        )}
           <Link className='link' to="/driverHome">
-            <h6>HOME</h6>
+          <h6 className='navLinks'>HOME</h6>
           </Link>
           <span className='logged'>
             <Link className='link' to="/driverProfile">
@@ -33,7 +38,7 @@ const DriverNav = () => {
             </span>
           {currentUser ? (
           <span className='write' onClick={logout}>
-           <Link className='link' to="/">
+           <Link className='link' to="/driverHome">
            Logout
            </Link>
             
