@@ -77,11 +77,8 @@ const Order = () => {
               <h2 className="title">{post.title}</h2>
             </Link>
             <p>{post.details}</p>
-            <p>{JSON.parse(post.locate)["address address-search"]}</p>
-            <p>{JSON.parse(post.locate).apartment}</p>
-            <p>{JSON.parse(post.locate).city},{JSON.parse(post.locate).state},{JSON.parse(post.locate).country}</p>
-            <p>{JSON.parse(post.locate).postcode}</p>
-           
+            <p>{post.address}</p>
+            <p>{post.city},{post.state},{post.country},{post.postcode}</p>
            
               {post.requested === 1 ?
                   <div className="requested">requested!</div> : 

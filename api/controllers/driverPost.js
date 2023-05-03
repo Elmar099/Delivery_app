@@ -27,7 +27,7 @@ export const updateDriverProfile = (req, res) => {
 }
 
 export const getOrders = (req, res) => {
-    const q = "SELECT orders.id, title, details, locate, address, did FROM orders, restaurants WHERE uid = restaurants.id AND did IS NULL AND requested = 1"
+    const q = "SELECT orders.id, title, details, address, city, state, country, postcode, raddress, rcity, rstate, rcountry, rpostcode, did FROM orders, restaurants WHERE uid = restaurants.id AND did IS NULL AND requested = 1"
 
     db.query(q, (err, data) => {
         if(err) return res.send(err)

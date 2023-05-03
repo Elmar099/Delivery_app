@@ -6,7 +6,7 @@ import axios from 'axios'
 import { AuthContext } from '../context/authContext'
 
 const Single = () => {
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState([]);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -56,8 +56,9 @@ const Single = () => {
         )}
         </div>
         <h1>{post.title}</h1>
-        <h1>{JSON.parse(post.locate)["address address-search"]},{JSON.parse(post.locate).apartment},{JSON.parse(post.locate).city},
-        {JSON.parse(post.locate).state},{JSON.parse(post.locate).country},{JSON.parse(post.locate).postcode}</h1>
+        <p>{post.address}</p>
+        <p>{post.city},{post.state},{post.country},{post.postcode}</p>
+
         {post.details}
       </div>
       

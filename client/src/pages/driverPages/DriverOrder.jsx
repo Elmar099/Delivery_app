@@ -68,16 +68,11 @@ function handleClick(index) {
             <h2 className="title">{post.title}</h2>
             <p>{post.details}</p>
             <b>Restaurant Location</b>
-            <p>{JSON.parse(post.address)["address address-search"]}</p>
-            <p>{JSON.parse(post.address).apartment}</p>
-            <p>{JSON.parse(post.address).city},{JSON.parse(post.address).state},{JSON.parse(post.address).country}</p>
-            <p>{JSON.parse(post.address).postcode}</p>
+            <p>{post.raddress}</p>
+            <p>{post.rcity},{post.rstate},{post.rcountry},{post.rpostcode}</p>
             <b>Customer Address</b>
-            <p>{JSON.parse(post.locate)["address address-search"]}</p>
-            <p>{JSON.parse(post.locate).apartment}</p>
-            <p>{JSON.parse(post.locate).city},{JSON.parse(post.locate).state},{JSON.parse(post.locate).country}</p>
-            <p>{JSON.parse(post.locate).postcode}</p>
-
+            <p>{post.address}</p>
+            <p>{post.city},{post.state},{post.country},{post.postcode}</p>
             <button onClick={() => handleClick(index)}>
               Accept Delivery
             </button>
@@ -85,7 +80,7 @@ function handleClick(index) {
           </div>
         </div>
         ))
-        : <p className="noOrders"><br>Need to login.</br></p>
+        : <p className="noOrders"><b>Need to login.</b></p>
       }
       </div>
     </div>

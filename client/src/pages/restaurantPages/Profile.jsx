@@ -40,7 +40,7 @@ const Profile = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     try{
-      await axios.put('/posts/', {inputs:inputs, locate:JSON.stringify(locate)})
+      await axios.put('/posts/', {inputs:inputs, locate:locate})
       navigate('/home')
     }catch(err) {
       setError(err.response.data)

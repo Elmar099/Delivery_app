@@ -29,11 +29,11 @@ const Write = () => {
       state ? 
       await axios.put(`/posts/${state.id}`, {
         
-        title, locate:JSON.stringify(locate), desc:value,
+        title, locate:locate, desc:value,
       })
       :
       await axios.post(`/posts/`, {
-        title, locate:JSON.stringify(locate), desc:value,
+        title, locate:locate, desc:value,
       })
       navigate('/order')
     } catch(err) {

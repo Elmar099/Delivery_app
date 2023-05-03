@@ -19,7 +19,8 @@ export const getPosts = (req, res) => {
     }) 
 }
 export const getPost = (req, res) => {
-    const q = "SELECT p.id, `username`, `title`, `locate`, `details`, `cat` FROM restaurants u JOIN orders p ON u.id=p.uid WHERE p.id = ?"
+    const q = "SELECT * FROM orders WHERE id =?"
+    // const q = "SELECT p.id, `username`, `title`, `locate`, `details`, `cat` FROM restaurants u JOIN orders p ON u.id=p.uid WHERE p.id = ?"
     db.query(q, [req.params.id], (err, data)=> {
         if (err) return res.status(500).json(err)
 
@@ -41,11 +42,15 @@ export const addPost = (req, res) => {
     jwt.verify(token, "jwtkey", (err, userInfo)=> {
         if (err) return res.status(403).json("Token not valid")
 
-        const q = "INSERT INTO orders(`title`, `locate`, `details`, `uid`) VALUES (?)"
+        const q = "INSERT INTO orders(`title`, `address`, `city`, `state`, `country`, `postcode`, `details`, `uid`) VALUES (?)"
         
         const values = [
             req.body.title, 
-            req.body.locate,
+            req.body.locate["address address-search"],
+            req.body.locate.city,
+            req.body.locate.state,
+            req.body.locate.country,
+            req.body.locate.postcode,
             req.body.desc,
             userInfo.id
         ]
@@ -83,11 +88,15 @@ export const updatePost = (req, res) => {
         if (err) return res.status(403).json("Token not valid")
 
         const postId = req.params.id
-        const q = "UPDATE orders SET `title`=?, `locate`=?, `details`=? WHERE `id` = ? AND `uid` = ?"
+        const q = "UPDATE orders SET `title`=?, `address`=?, `city`=?, `state`=?, `country`=?, `postcode`=?, `details`=? WHERE `id` = ? AND `uid` = ?"
         
         const values = [
             req.body.title,
-            req.body.locate, 
+            req.body.locate["address address-search"],
+            req.body.locate.city,
+            req.body.locate.state,
+            req.body.locate.country,
+            req.body.locate.postcode,
             req.body.desc,
         ]
 
@@ -128,18 +137,22 @@ export const updateProfile = (req, res) => {
         if (err) return res.status(403).json("Token not valid")
 
     
-        const q = "UPDATE restaurants SET `name`=?, `address`=?, `license_number`=? WHERE `id` = ?"
+        const q = "UPDATE restaurants SET `name`=?,`raddress`=?,`rcity`=?,`rstate`=?, `rcountry`=?,`license_number`=?,`rpostcode`=? WHERE `id`=?"
 
         const values = [
             req.body.inputs.name, 
-            req.body.locate,
+            req.body.locate["address address-search"],
+            req.body.locate.city,
+            req.body.locate.state,
+            req.body.locate.country,
             req.body.inputs.license_number,
+            req.body.locate.postcode
         ]
 
         db.query(q, [...values, userInfo.id], (err, data)=> {
             if (err) return res.status(500).json(err)
 
-            return res.status(200).json("Profile has been updated!")
+            return res.status(200).json("restaurant updated")
         })
     })
 }
