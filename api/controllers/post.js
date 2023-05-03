@@ -19,7 +19,8 @@ export const getPosts = (req, res) => {
     }) 
 }
 export const getPost = (req, res) => {
-    const q = "SELECT p.id, `username`, `title`, `locate`, `details`, `cat` FROM restaurants u JOIN orders p ON u.id=p.uid WHERE p.id = ?"
+    const q = "SELECT * FROM orders WHERE id =?"
+    // const q = "SELECT p.id, `username`, `title`, `locate`, `details`, `cat` FROM restaurants u JOIN orders p ON u.id=p.uid WHERE p.id = ?"
     db.query(q, [req.params.id], (err, data)=> {
         if (err) return res.status(500).json(err)
 
@@ -41,7 +42,7 @@ export const addPost = (req, res) => {
     jwt.verify(token, "jwtkey", (err, userInfo)=> {
         if (err) return res.status(403).json("Token not valid")
 
-        const q = "INSERT INTO orders(`title`, `locate`, `details`, `uid`) VALUES (?)"
+        const q = "INSERT INTO orders(`title`, `address`, `details`, `uid`) VALUES (?)"
         
         const values = [
             req.body.title, 
@@ -87,7 +88,7 @@ export const updatePost = (req, res) => {
         
         const values = [
             req.body.title,
-            req.body.locate, 
+            req.body.locate,
             req.body.desc,
         ]
 
@@ -128,7 +129,7 @@ export const updateProfile = (req, res) => {
         if (err) return res.status(403).json("Token not valid")
 
     
-        const q = "UPDATE restaurants SET `name`=?, `address`=?, `license_number`=? WHERE `id` = ?"
+        const q = "UPDATE restaurants SET `name`=?, `locate`=?, `license_number`=? WHERE `id`=?"
 
         const values = [
             req.body.inputs.name, 
@@ -139,33 +140,7 @@ export const updateProfile = (req, res) => {
         db.query(q, [...values, userInfo.id], (err, data)=> {
             if (err) return res.status(500).json(err)
 
-            return res.status(200).json("Profile has been updated!")
+            return res.status(200).json("restaurant updated")
         })
     })
 }
-
-
-// export const updateDriverProfile = (req, res) => {
-//     const token = req.cookies.access_token
-//     if(!token) return res.status(401).json("Not authneticated!")
-
-//     jwt.verify(token, "jwtkey", (err, userInfo)=> {
-//         if (err) return res.status(403).json("Token not valid")
-
-
-//         const q = "UPDATE drivers SET f_name=?, l_name=?, drivers_license=?, license_plate=? WHERE `id` = ?"
-
-//         const values = [
-//             req.body.f_name, 
-//             req.body.l_name,
-//             req.body.drivers_license,
-//             req.body.license_plate,
-//         ]
-
-//         db.query(q, [...values, userInfo.id], (err, data)=> {
-//             if (err) return res.status(500).json(err)
-
-//             return res.status(200).json("Profile has been updated!")
-//         })
-//     })
-// }

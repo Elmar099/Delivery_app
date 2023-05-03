@@ -60,14 +60,11 @@ function handleClick(index) {
           </div>
           <div className="content">
             <h2 className="title">{post.title}</h2>
-            
-            <b>Customer Address</b>
             <p>{post.details}</p>
-            <p>{JSON.parse(post.locate)["address address-search"]}</p>
-            <p>{JSON.parse(post.locate).apartment}</p>
-            <p>{JSON.parse(post.locate).city},{JSON.parse(post.locate).state},{JSON.parse(post.locate).country}</p>
-            <p>{JSON.parse(post.locate).postcode}</p>
-
+            <b>Restaurant Location</b>
+            <p>{post.locate}</p>
+            <b>Customer Address</b>
+            <p>{post.address}</p>
             <button onClick={() => handleClick(index)}>
               Accept Delivery
             </button>
@@ -75,7 +72,7 @@ function handleClick(index) {
           </div>
         </div>
         ))
-        : <p className="noOrders"><br>Need to login.</br></p>
+        : <p className="noOrders"><b>Need to login.</b></p>
       }
       </div>
     </div>

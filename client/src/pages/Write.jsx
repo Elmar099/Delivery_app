@@ -1,27 +1,32 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { AddressAutofill } from '@mapbox/search-js-react';
+//import { AddressAutofill } from '@mapbox/search-js-react';
+import { GoogleMap, Autocomplete, useLoadScript } from "@react-google-maps/api";
+const libraries = ["places", "geometry"];
 
 const Write = () => {
-  const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
   const state = useLocation().state
-  
+  const [autoComplete, setAutoComplete] = useState(null)
   const [title, setTitle] = useState(state?.title || "")
   const [value, setValue] = useState(state?.desc || "")
-  const [locate, setLocate] = useState({
-    "address address-search": '',
-    apartment: '',
-    city:'',
-    state: '',
-    country: '',
-    postcode: '',
-  })
+  const [locate, setLocate] = useState(state?.locate || "")
   const navigate = useNavigate()
+  
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyAb525bjpnBdm6WZj_gXCQgpG5nXNBTfKA",
+    libraries,
+  })
 
-  const handleChange = e => {
-    setLocate(prev=>({...prev, [e.target.name]: e.target.value}))
-  }
+  if (!isLoaded) return <div>Loading</div>
+
+  const onLoad = (autoC) => setAutoComplete(autoC)
+
+   const onPlaceChanged = () => {
+    const address = autoComplete.getPlace().formatted_address;
+    setLocate(address)
+    //console.log(autoComplete.getPlace().formatted_address)
+   }
 
   const handleClick = async (e) => {
     e.preventDefault()
@@ -29,11 +34,11 @@ const Write = () => {
       state ? 
       await axios.put(`/posts/${state.id}`, {
         
-        title, locate:JSON.stringify(locate), desc:value,
+        title, locate:locate, desc:value,
       })
       :
       await axios.post(`/posts/`, {
-        title, locate:JSON.stringify(locate), desc:value,
+        title, locate:locate, desc:value,
       })
       navigate('/order')
     } catch(err) {
@@ -47,49 +52,14 @@ const Write = () => {
       <label htmlFor="orderName">Order name</label>
 
         <input type="text" name='orderName' value={title} placeholder='Order for...' onChange={(e)=>setTitle(e.target.value)}/>
-        {/* <label htmlFor="location">Location</label>
-        <input type="text" value={locate} name='location' placeholder='Location...' onChange={e=>setLocate(e.target.value)}/> */}
-        {/* <form>
-          <AddressAutofill accessToken={MAPBOX_TOKEN}>
-            <input
-            type="text"
-            name='location' 
-            placeholder='Location...'
-            autoComplete="street-address"
-            value={locate}
-            
-            onChange={(e) => setLocate(e.target.value)}
-            />
-          </AddressAutofill>
-
-        </form> */}
+       
         <form>
-          <AddressAutofill accessToken={MAPBOX_TOKEN}>
-          <input
-          name="address" placeholder="Address" type="text"
-          autoComplete="address-line1" onChange={handleChange}
-          />
-          </AddressAutofill>
-          <input
-          name="apartment" placeholder="Apartment number" type="text"
-          autoComplete="address-line2" onChange={handleChange}
-          />
-          <input
-          name="city" placeholder="City" type="text"
-          autoComplete="address-level2" onChange={handleChange}
-          />
-          <input
-          name="state" placeholder="State" type="text"
-          autoComplete="address-level1" onChange={handleChange}
-          />
-          <input
-          name="country" placeholder="Country" type="text"
-          autoComplete="address-level0" onChange={handleChange}
-          />
-          <input
-          name="postcode" placeholder="Postcode" type="text"
-          autoComplete="postal-code" onChange={handleChange}
-          />
+      <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+         <div>
+               <input type="text" name='orderLocate' placeholder='Location...'/>
+         </div>
+    </Autocomplete>
+        
         </form>
         <label htmlFor="orderD">Order details</label>
         <textarea className='editor' name='orderD' value={value} placeholder='Order details...' onChange={e=>setValue(e.target.value)}/>

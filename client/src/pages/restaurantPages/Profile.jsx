@@ -3,44 +3,45 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useState} from 'react'
 import { AuthContext } from '../../context/authContext'
-import { AddressAutofill } from '@mapbox/search-js-react';
+import { GoogleMap, Autocomplete, useLoadScript } from "@react-google-maps/api";
+const libraries = ["places", "geometry"];
 
+  // const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const Profile = () => {
-
-  const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
-
+  const navigate = useNavigate()
   const { currentUser } = useContext(AuthContext)
-
-
+  const [autoComplete, setAutoComplete] = useState(null)
+  const [locate, setLocate] = useState("")
+  const [err, setError] = useState(null)
   const [inputs, setInputs] = useState({
     name: '',
     license_number: '',
   })
-  const [locate, setLocate] = useState({
-    "address address-search": '',
-    apartment: '',
-    city:'',
-    state: '',
-    country: '',
-    postcode: '',
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyAb525bjpnBdm6WZj_gXCQgpG5nXNBTfKA",
+    libraries,
   })
-  const [err, setError] = useState(null)
 
+  if (!isLoaded) return <div>Loading</div>
+
+  const onLoad = (autoC) => setAutoComplete(autoC)
+
+   const onPlaceChanged = () => {
+    const address = autoComplete.getPlace().formatted_address;
+    setLocate(address)
+    //console.log(autoComplete.getPlace().formatted_address)
+   }
   const handleChange = e => {
     setInputs(prev =>({...prev, [e.target.name]: e.target.value}))
   }
   
-  const locationChange = e => {
-    setLocate(prev=>({...prev, [e.target.name]: e.target.value}))
-  }
-
-  const navigate = useNavigate()
-
   const handleSubmit = async e => {
     e.preventDefault()
     try{
-      await axios.put('/posts/', {inputs:inputs, locate:JSON.stringify(locate)})
+      await axios.put('/posts/', {
+        inputs, locate:locate,
+      })
       navigate('/home')
     }catch(err) {
       setError(err.response.data)
@@ -54,33 +55,11 @@ const Profile = () => {
               <label htmlFor="resName">Restaurant Name</label>
               <input type="text" placeholder="Name..." name='name' onChange={handleChange} />
               <label htmlFor="location">Location</label>
-              {/* <input type="text" placeholder="Address..." name='address' onChange={handleChange}/> */}
-              <AddressAutofill accessToken={MAPBOX_TOKEN}>
-                <input
-                name="address" placeholder="Address" type="text"
-                autoComplete="address-line1" onChange={locationChange}
-                />
-                </AddressAutofill>
-                <input
-                name="apartment" placeholder="Apartment number" type="text"
-                autoComplete="address-line2" onChange={locationChange}
-                />
-                <input
-                name="city" placeholder="City" type="text"
-                autoComplete="address-level2" onChange={locationChange}
-                />
-                <input
-                name="state" placeholder="State" type="text"
-                autoComplete="address-level1" onChange={locationChange}
-                />
-                <input
-                name="country" placeholder="Country" type="text"
-                autoComplete="country" onChange={locationChange}
-                />
-                <input
-                name="postcode" placeholder="Postcode" type="text"
-                autoComplete="postal-code" onChange={locationChange}
-                />
+              <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+                <div>
+                  <input type="text" name='orderLocate' placeholder='Location...'/>
+                </div>
+            </Autocomplete>
               
               <label htmlFor="resName">License Number</label>
               <input type="text" placeholder="License Number" name='license_number' onChange={handleChange}/>

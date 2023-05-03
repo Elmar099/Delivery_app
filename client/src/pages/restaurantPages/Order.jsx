@@ -1,16 +1,17 @@
 import React, { useContext } from "react"
 import { useEffect} from 'react'
 import { useState } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import { AuthContext } from "../../context/authContext"
 // import { useNavigate } from 'react-router-dom'
 
 
 const Order = () => {
-  const [posts, setPosts] = useState([])
-  const { currentUser } = useContext(AuthContext);
   
+  const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate()
+  const [posts, setPosts] = useState([])
   useEffect(()=>{
     const fetchData = async ()=>{
       try{
@@ -23,21 +24,6 @@ const Order = () => {
     fetchData()
   }, []);
 
-
-  // const handleClick = () => {
-  //   setIsDriverRequested(true);
-  // };
-  // const [state, setState] = useState(posts)
-
-  // function handleClick(index) {
-  //   setPosts(prevState => {
-  //     const newState = [...prevState];
-  //     newState[index].requested = 1
-  //     return newState
-  //   });
-  // }
-
-  
   function handleClick(index) {
     const postId = posts[index].id;
     const newRequested = 1;
@@ -56,6 +42,7 @@ const Order = () => {
             return newState;
           });
         }
+        navigate('/order')
       })
       .catch(error => console.error(error));
   }
@@ -77,12 +64,8 @@ const Order = () => {
               <h2 className="title">{post.title}</h2>
             </Link>
             <p>{post.details}</p>
-            <p>{JSON.parse(post.locate)["address address-search"]}</p>
-            <p>{JSON.parse(post.locate).apartment}</p>
-            <p>{JSON.parse(post.locate).city},{JSON.parse(post.locate).state},{JSON.parse(post.locate).country}</p>
-            <p>{JSON.parse(post.locate).postcode}</p>
-           
-           
+            <p>{post.address}</p>
+
               {post.requested === 1 ?
                   <div className="requested">requested!</div> : 
                <button onClick={() => handleClick(index)}>Request driver</button>
