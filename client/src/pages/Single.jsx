@@ -57,8 +57,7 @@ const Single = () => {
         </div>
         <h1>{post.title}</h1>
         <p>{post.address}</p>
-        <p>{post.city},{post.state},{post.country},{post.postcode}</p>
-
+        
         {post.details}
       </div>
       

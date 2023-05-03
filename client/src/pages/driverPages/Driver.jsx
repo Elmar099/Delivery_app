@@ -1,6 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import { useState } from 'react'
-import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
+import { GoogleMap, 
+  useLoadScript, 
+  Marker, 
+  Autocomplete, 
+  DirectionsRenderer } from "@react-google-maps/api";
 import axios from 'axios';
 
 //import ReactMapGL , {GeolocateControl, Marker, NavigationControl} from 'react-map-gl';
@@ -10,6 +14,11 @@ const libraries = ["places", "geometry"];
 const Driver = () => {
   const [autoComplete, setAutoComplete] = useState(null)
   const [post, setPost] = useState([]);  
+  const [directionsResponse, setDirectionsResponse] = useState(null)
+  const [distance, setDistance] = useState("")
+  const [duration, setDuration] = useState("")
+  const originRef = useRef()
+  const destinationRef = useRef()
   const [coordinates, setCoordinates] = useState({lat: 37.3345, lng: -121.8})
   const [dValue, setDValue] = useState({
     locate: "",
@@ -19,7 +28,8 @@ const Driver = () => {
        try{
          const res = await axios.get("/driverPosts/coords")
          setPost(res.data)
-         console.log(res.data[0].address)
+         
+         
        } catch (err) {
          console.log(err)
        }
@@ -34,39 +44,63 @@ const Driver = () => {
 
    if (!isLoaded) return <div>Loading</div>
 
-   const onLoad = (autoC) => setAutoComplete(autoC)
+  //  const onLoad = (autoC) => setAutoComplete(autoC)
 
-   const onPlaceChanged = () => {
-    const lat = autoComplete.getPlace().geometry.location.lat()
-    const lng = autoComplete.getPlace().geometry.location.lng()
-    setCoordinates({ lat, lng})
+  //  const onPlaceChanged = () => {
+  //   const lat = autoComplete.getPlace().geometry.location.lat()
+  //   const lng = autoComplete.getPlace().geometry.location.lng()
+  //   setCoordinates({ lat, lng})
 
     
     
+  //  }
+
+  //  const handleClick = () => {
+  //    setDValue(dValue["locate"] = post[0].locate)
+  //    setDValue(dValue["address"] = post[0].address)
+  //   console.log(post[0].locate)
+  //  }
+
+   const calculateRoute = async (e) => {
+    e.preventDefault()
+    
+    const directionsService = new window.google.maps.DirectionsService()
+    const results = await directionsService.route({
+      origin: post[0].locate,
+      destination: post[0].address,
+      travelMode: window.google.maps.TravelMode.DRIVING
+    })
+    setDirectionsResponse(results)
+    setDistance(results.routes[0].legs[0].distance.text)
+    setDuration(results.routes[0].legs[0].duration.text)
    }
 
-   const handleClick = () => {
-    setDValue(dValue["locate"] = post[0].locate)
-    setDValue(dValue["address"] = post[0].address)
-    console.log(dValue["address"])
-    
+   const clearRoute = () => {
+     setDirectionsResponse(null)
+     setDistance('')
+     setDuration('')
+     originRef.current.value = ''
+     destinationRef.current.value = ''
    }
 
   return (
     <div className='map'>
-      <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-         <div>
-            <input type="text" placeholder='Search....' />
-            <button onClick={handleClick}>submit</button>
-         </div>
-         
-    </Autocomplete>
+      
+      <div className='Ds'>
+        
+        <div className='logis'>Distance: {distance}</div>
+        <div className='logis'>Duration: {duration}</div>
+        </div>
       <GoogleMap 
         zoom={13} 
         center={{lat: coordinates.lat, lng: coordinates.lng}} 
         mapContainerClassName="map-container">
+        {directionsResponse && <DirectionsRenderer 
+        directions={directionsResponse}
+        />}
+
     </GoogleMap>
-    
+    <button className='mapBut' onClick={calculateRoute}>Pick up</button>
     </div>
   )
 
