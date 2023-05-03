@@ -4,6 +4,8 @@ import {
     getOrders,
     acceptOrder,
     getCoordes,
+    deletePost,
+    finishOrder,
 }from '../controllers/driverPost.js'
 
 
@@ -13,5 +15,7 @@ router.put("/", updateDriverProfile)
 router.get("/", getOrders)
 router.get("/coords", getCoordes)
 router.put("/:id", acceptOrder)
+router.delete("/:id", deletePost)
+router.put("/finish", finishOrder)
 
 export default router

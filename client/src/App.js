@@ -24,6 +24,7 @@ import Order from "./pages/restaurantPages/Order";
 import Home from "./pages/restaurantPages/Home";
 import DriverHome from "./pages/driverPages/DriverHome";
 import DriverContact from "./pages/driverPages/DriverContact";
+import Calculations from "./pages/restaurantPages/Calculations";
 
 const Layout = () => {
   return (
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: '/contact',
         element: <Contact/>,
+      },
+      {
+        path: '/calculations',
+        element: <Calculations/>,
       },
     ],
   },

@@ -27,10 +27,9 @@ const Navbar = () => {
             {currentUser?
             <h6 className='navLinks'>ORDERS</h6> 
             : <p></p>
-          }
-            
+          } 
           </Link>
-</div>
+          </div>
           <div className='links'>
           <span className='logged'>
             <Link className='link' to="/profile">

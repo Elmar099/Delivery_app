@@ -1,12 +1,14 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 //import { AddressAutofill } from '@mapbox/search-js-react';
 import { GoogleMap, Autocomplete, useLoadScript } from "@react-google-maps/api";
+import { AuthContext } from '../context/authContext';
 const libraries = ["places", "geometry"];
 
 const Write = () => {
   const state = useLocation().state
+  const { currentUser } = useContext(AuthContext);
   const [autoComplete, setAutoComplete] = useState(null)
   const [title, setTitle] = useState(state?.title || "")
   const [value, setValue] = useState(state?.desc || "")
@@ -62,8 +64,7 @@ const Write = () => {
           <label>Location</label>
       <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
          <div>
-          
-               <input type="text" name='orderLocate' placeholder='Location...'/>
+            <input type="text" name='orderLocate' placeholder='Location...'/>
          </div>
     </Autocomplete>
         
@@ -76,7 +77,11 @@ const Write = () => {
         <div className="item">
           <h1>Post order</h1>
           <div className="buttons">
-            <button onClick={handleClick}>Confirm order</button>
+          {currentUser.locate ? (
+        <button onClick={handleClick}>Confirm order</button>
+      ) : (
+        <p>Please enter your location to proceed with the order.</p>
+      )}
           </div>
         </div>
         

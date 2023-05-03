@@ -69,9 +69,9 @@ export const deletePost = (req, res) => {
         if (err) return res.status(403).json("Token not valid")
 
         const postId = req.params.id
-        const q = "DELETE FROM orders WHERE `id` = ? AND `uid` = ?"
+        const q = "DELETE FROM orders WHERE `id` = ?"
 
-        db.query(q, [postId, userInfo.id], (err, data) => {
+        db.query(q, [postId], (err, data) => {
             if (err) return res.status(403).json("You can only delete your posts!")
 
             return res.status(200).json("Post deleted")

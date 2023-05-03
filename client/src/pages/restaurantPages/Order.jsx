@@ -4,11 +4,14 @@ import { useState } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import { AuthContext } from "../../context/authContext"
+
 // import { useNavigate } from 'react-router-dom'
 
 
 const Order = () => {
-  
+  const [directionsResponse, setDirectionsResponse] = useState(null)
+  const [distance, setDistance] = useState("")
+  const [duration, setDuration] = useState("")
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate()
   const [posts, setPosts] = useState([])
@@ -42,7 +45,7 @@ const Order = () => {
             return newState;
           });
         }
-        navigate('/order')
+        navigate('/calculations')
       })
       .catch(error => console.error(error));
   }
