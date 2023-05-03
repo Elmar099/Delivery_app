@@ -68,18 +68,11 @@ export const acceptOrder = (req, res) => {
 }
 
 export const getCoordes = (req, res) => {
-    const token = req.cookies.access_token
-    if(!token) return res.status(401).json("Not authneticated!")
-
-    jwt.verify(token, "jwtkey", (err, userInfo)=> {
-        if (err) return res.status(403).json("Token not valid")
-
         const q = "SELECT locate, address FROM orders, restaurants, drivers WHERE drivers.id = did AND restaurants.id = uid"
 
         db.query(q, (err, data) => {
             if(err) return res.status(500).json(err)
 
-            return res.json("locations got!")
+            return res.json(data)
         })
-    })
 }

@@ -9,14 +9,17 @@ import axios from 'axios';
 const libraries = ["places", "geometry"];
 const Driver = () => {
   const [autoComplete, setAutoComplete] = useState(null)
-  const [posts, setPosts] = useState([])
+  const [post, setPost] = useState([]);  
   const [coordinates, setCoordinates] = useState({lat: 37.3345, lng: -121.8})
-  const [dValue, setDValue] = useState("")
+  const [dValue, setDValue] = useState({
+    locate: "",
+    address: "",})
   useEffect(()=>{
      const fetchData = async ()=>{
        try{
          const res = await axios.get("/driverPosts/coords")
-         setPosts(res.data)
+         setPost(res.data)
+         console.log(res.data[0].address)
        } catch (err) {
          console.log(err)
        }
@@ -25,40 +28,36 @@ const Driver = () => {
    }, []);
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAb525bjpnBdm6WZj_gXCQgpG5nXNBTfKA",
+    googleMapsApiKey: "AIzaSyDK5QjukwJ1EntqMrHObucvEOamfDoTqsI",
     libraries,
   })
 
-
    if (!isLoaded) return <div>Loading</div>
 
-   
-   
-   
    const onLoad = (autoC) => setAutoComplete(autoC)
 
    const onPlaceChanged = () => {
     const lat = autoComplete.getPlace().geometry.location.lat()
     const lng = autoComplete.getPlace().geometry.location.lng()
-    //const something = "456 W Olive Ave, Sunnyvale, CA 94086, USA"
-  
     setCoordinates({ lat, lng})
+
     
-    console.log(autoComplete.getPlace())
     
    }
 
    const handleClick = () => {
-    setDValue(posts.locate)
+    setDValue(dValue["locate"] = post[0].locate)
+    setDValue(dValue["address"] = post[0].address)
+    console.log(dValue["address"])
+    
    }
 
   return (
     <div className='map'>
       <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
          <div>
-            <input type="text" placeholder='Search....' defaultValue={dValue}/>
+            <input type="text" placeholder='Search....' />
             <button onClick={handleClick}>submit</button>
-           
          </div>
          
     </Autocomplete>

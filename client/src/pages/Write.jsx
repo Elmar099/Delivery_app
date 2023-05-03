@@ -11,10 +11,12 @@ const Write = () => {
   const [title, setTitle] = useState(state?.title || "")
   const [value, setValue] = useState(state?.desc || "")
   const [locate, setLocate] = useState(state?.locate || "")
+  const [lati, setLat] = useState("")
+  const [lngi, setLng] = useState("")
   const navigate = useNavigate()
   
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAb525bjpnBdm6WZj_gXCQgpG5nXNBTfKA",
+    googleMapsApiKey: "AIzaSyDK5QjukwJ1EntqMrHObucvEOamfDoTqsI",
     libraries,
   })
 
@@ -23,9 +25,13 @@ const Write = () => {
   const onLoad = (autoC) => setAutoComplete(autoC)
 
    const onPlaceChanged = () => {
-    const address = autoComplete.getPlace().formatted_address;
+    const lat = autoComplete.getPlace().geometry.location.lat;
+    const lng = autoComplete.getPlace().geometry.location.lng
+    setLat(lat)
+    setLng(lng)
+
+    const address = autoComplete.getPlace().formatted_address
     setLocate(address)
-    //console.log(autoComplete.getPlace().formatted_address)
    }
 
   const handleClick = async (e) => {
@@ -34,11 +40,11 @@ const Write = () => {
       state ? 
       await axios.put(`/posts/${state.id}`, {
         
-        title, locate:locate, desc:value,
+        title, locate:locate, desc:value, 
       })
       :
       await axios.post(`/posts/`, {
-        title, locate:locate, desc:value,
+        title, locate:locate, desc:value, lati, lngi
       })
       navigate('/order')
     } catch(err) {
@@ -52,10 +58,11 @@ const Write = () => {
       <label htmlFor="orderName">Order name</label>
 
         <input type="text" name='orderName' value={title} placeholder='Order for...' onChange={(e)=>setTitle(e.target.value)}/>
-       
         <form>
+          <label>Location</label>
       <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
          <div>
+          
                <input type="text" name='orderLocate' placeholder='Location...'/>
          </div>
     </Autocomplete>

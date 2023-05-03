@@ -14,12 +14,14 @@ const Profile = () => {
   const [autoComplete, setAutoComplete] = useState(null)
   const [locate, setLocate] = useState("")
   const [err, setError] = useState(null)
+  const [lati, setLat] = useState("")
+  const [lngi, setLng] = useState("")
   const [inputs, setInputs] = useState({
     name: '',
     license_number: '',
   })
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAb525bjpnBdm6WZj_gXCQgpG5nXNBTfKA",
+    googleMapsApiKey: "AIzaSyDK5QjukwJ1EntqMrHObucvEOamfDoTqsI",
     libraries,
   })
 
@@ -28,6 +30,11 @@ const Profile = () => {
   const onLoad = (autoC) => setAutoComplete(autoC)
 
    const onPlaceChanged = () => {
+    const lat = autoComplete.getPlace().geometry.location.lat;
+    const lng = autoComplete.getPlace().geometry.location.lng
+    setLat(lat)
+    setLng(lng)
+
     const address = autoComplete.getPlace().formatted_address;
     setLocate(address)
     //console.log(autoComplete.getPlace().formatted_address)
@@ -40,7 +47,7 @@ const Profile = () => {
     e.preventDefault()
     try{
       await axios.put('/posts/', {
-        inputs, locate:locate,
+        inputs, locate:locate, lati, lngi,
       })
       navigate('/home')
     }catch(err) {

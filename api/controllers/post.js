@@ -42,13 +42,15 @@ export const addPost = (req, res) => {
     jwt.verify(token, "jwtkey", (err, userInfo)=> {
         if (err) return res.status(403).json("Token not valid")
 
-        const q = "INSERT INTO orders(`title`, `address`, `details`, `uid`) VALUES (?)"
+        const q = "INSERT INTO orders(`title`, `address`, `details`, `lat`, `lng`, `uid`) VALUES (?)"
         
         const values = [
             req.body.title, 
             req.body.locate,
             req.body.desc,
-            userInfo.id
+            req.body.lati,
+            req.body.lngi,
+            userInfo.id,
         ]
 
         db.query(q, [values], (err, data)=> {
@@ -129,12 +131,14 @@ export const updateProfile = (req, res) => {
         if (err) return res.status(403).json("Token not valid")
 
     
-        const q = "UPDATE restaurants SET `name`=?, `locate`=?, `license_number`=? WHERE `id`=?"
+        const q = "UPDATE restaurants SET `name`=?, `locate`=?, `license_number`=?, `lat`=?, `lng`=? WHERE `id`=?"
 
         const values = [
             req.body.inputs.name, 
             req.body.locate,
             req.body.inputs.license_number,
+            req.body.lati,
+            req.body.lngi,
         ]
 
         db.query(q, [...values, userInfo.id], (err, data)=> {
