@@ -22,12 +22,6 @@ const DriverOrder = () => {
     fetchData();
   }, []);
 
-  // const [isDriverRequested, setIsDriverRequested] = useState(false);
-
-  // const handleClick = () => {
-  //   setIsDriverRequested(true);
-  // };
-
 const navigate = useNavigate()
 
 function handleClick(index) {
@@ -66,16 +60,12 @@ function handleClick(index) {
           </div>
           <div className="content">
             <h2 className="title">{post.title}</h2>
-            <p>{post.details}</p>
-            <b>Restaurant Location</b>
-            <p>{JSON.parse(post.address)["address address-search"]}</p>
-            <p>{JSON.parse(post.address).apartment}</p>
-            <p>{JSON.parse(post.address).city},{JSON.parse(post.address).state},{JSON.parse(post.address).country}</p>
-            <p>{JSON.parse(post.address).postcode}</p>
+            
             <b>Customer Address</b>
+            <p>{post.details}</p>
             <p>{JSON.parse(post.locate)["address address-search"]}</p>
             <p>{JSON.parse(post.locate).apartment}</p>
-            <p>{JSON.parse(post.locate).city},{JSON.parse(post.address).state},{JSON.parse(post.address).country}</p>
+            <p>{JSON.parse(post.locate).city},{JSON.parse(post.locate).state},{JSON.parse(post.locate).country}</p>
             <p>{JSON.parse(post.locate).postcode}</p>
 
             <button onClick={() => handleClick(index)}>

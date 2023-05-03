@@ -56,8 +56,7 @@ const Single = () => {
         )}
         </div>
         <h1>{post.title}</h1>
-        <h1>{JSON.parse(post.locate)["address address-search"]},{JSON.parse(post.locate).apartment},{JSON.parse(post.locate).city},
-        {JSON.parse(post.locate).state},{JSON.parse(post.locate).country},{JSON.parse(post.locate).postcode}</h1>
+        
         {post.details}
       </div>
       
