@@ -5,6 +5,8 @@ import { useState } from 'react'
 import axios from 'axios'
 import { AuthContext } from "../../context/authContext"
 import { useNavigate } from 'react-router-dom'
+import NoOrder from "../../images/orders.png"
+
 
 const DriverOrder = () => {
   const { currentUser } = useContext(AuthContext);
@@ -74,6 +76,12 @@ function handleClick(index) {
         ))
         : <p className="noOrders"><b>Need to login.</b></p>
       }
+      {posts.length === 0 ? 
+      <div className="order-image">
+        <img src={NoOrder} alt="" />
+      </div>
+        : <p></p>  
+  }
       </div>
     </div>
   )

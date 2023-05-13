@@ -26,8 +26,8 @@ const Driver = () => {
     lat: 37.27, 
     lng: -121.842,
   })
-  const originRef = useRef()
-  const destinationRef = useRef()
+  // const originRef = useRef()
+  // const destinationRef = useRef()
   //const [coordinates, setCoordinates] = useState({lat: 37.3345, lng: -121.8})
   // const [dValue, setDValue] = useState({
   //   locate: "",
@@ -113,7 +113,7 @@ const Driver = () => {
     const directionsService = new window.google.maps.DirectionsService()
     const dir = new window.google.maps.LatLng({lat: center.lat, lng: center.lng})
     const results = await directionsService.route({
-      origin: dir,
+      origin: post[0].locate,
       destination: post[0].address,
       travelMode: window.google.maps.TravelMode.DRIVING
     })

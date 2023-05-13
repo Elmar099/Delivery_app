@@ -4,6 +4,7 @@ import { useState } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import { AuthContext } from "../../context/authContext"
+import NoOrder from "../../images/orders.png"
 
 // import { useNavigate } from 'react-router-dom'
 
@@ -20,6 +21,7 @@ const Order = () => {
       try{
         const res = await axios.get("/posts")
         setPosts(res.data)
+        console.log(posts)
       } catch (err) {
         console.log(err)
       }
@@ -80,6 +82,13 @@ const Order = () => {
       ))
       : <p className="noOrders"><br></br>Need to login.</p>
     } 
+    {posts.length === 0 ? 
+      <div className="order-image">
+        <img src={NoOrder} alt="" />
+      </div>
+        : <p></p>  
+  }
+    
       </div>
     </div>
   )

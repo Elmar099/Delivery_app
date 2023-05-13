@@ -39,6 +39,11 @@ const Write = () => {
 
   const handleClick = async (e) => {
     e.preventDefault()
+    if (title==='' || !locate==='' || !value==='') {
+      setError("Please fill in all the required fields.");
+      return
+    }
+  
     try{
       state ? 
       await axios.put(`/posts/${state.id}`, {
@@ -57,30 +62,33 @@ const Write = () => {
   
   return (
     <div className="add">
-      <h1>~Make an order~</h1>
+      <h1>Make an order</h1>
       <div className="content">
       <label htmlFor="orderName">Order name</label>
 
-        <input type="text" name='orderName' value={title} placeholder='Order for...' onChange={(e)=>setTitle(e.target.value)}/>
+      { err && <p>{err}</p> }
+        <input required type="text" name='orderName' value={title} placeholder='Order for...' onChange={(e)=>setTitle(e.target.value)}/>
         <form>
           <label>Location</label>
       <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
          <div>
-            <input type="text" name='orderLocate' placeholder='Location...'/>
+         { err && <p>{err}</p> }
+            <input required type="text" name='orderLocate' placeholder='Location...'/>
          </div>
     </Autocomplete>
         
         </form>
         <label htmlFor="orderD">Order details</label>
-        <textarea className='editor' name='orderD' value={value} placeholder='Order details...' onChange={e=>setValue(e.target.value)}/>
+        { err && <p>{err}</p> }
+        <textarea required className='editor' name='orderD' value={value} placeholder='Order details...' onChange={e=>setValue(e.target.value)}/>
         
       </div>
       <div className="menu">
         <div className="item">
           <h1>Post order</h1>
           <div className="buttons">
+            {/* { err && <p>{err}</p> } */}
             <button onClick={handleClick}>Confirm order</button>
-            { err && <p>{err}</p> }
           </div>
         </div>
       </div>

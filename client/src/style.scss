@@ -207,6 +207,11 @@ $lightGreen : #78bd39;
                 margin-bottom: 20px !important;
                 gap: 30px;
 
+                .order-image {
+                    
+                    height: 70vh;
+                }
+
                 .noOrders {
                     font-size: 28px;
                     text-align: center;
@@ -408,6 +413,13 @@ $lightGreen : #78bd39;
               flex-direction: column;
               gap: 20px;
               width: 40%;
+
+              p {
+                font-size: 15;
+                font-weight: bold;
+                color: rgb(204, 47, 47);
+                padding: 10px 0px 0px 0px !important;
+            }
           
               input{
                 padding: 10px !important;
@@ -454,6 +466,7 @@ $lightGreen : #78bd39;
               }
           
               .buttons {
+                
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
@@ -667,5 +680,95 @@ $lightGreen : #78bd39;
                 width : 100vw;
                 height: 100vh;
               }
+        //CALCULATIONS 
+        .calculations {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            img {
+                margin: 30px 0px!important;
+            }
+
+            h1 {
+                font-size: 35px;
+                color: $lightGreen;
+                font-weight: 600;
+                margin: 20px!important;
+            }
+
+            .container {
+                border: 1px solid rgb(196, 196, 196);
+                border-radius: 8px;
+                padding: 30px !important;
+                margin-bottom: 175px !important;
+                margin-top: 20px !important;
+
+                .inner {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .logs {
+                        display: flex;
+                        flex-direction: column;
+
+                        .logis, .cost {
+                            padding: 10px !important;
+                            font-size: 18px;
+                            text-align: left;
+                        }
+                    }
+                    .nums {
+                        display: flex;
+                        flex-direction: column;
+                        float: right;
+                        .top {
+                            margin-top: 10px !important;
+                        }
+                        .mid {
+                            margin-top: 18px !important;
+                        }
+                        .bot {
+                            margin-top: 19px !important;
+                            font-size: 21px;
+                            color: $lightGreen;
+                            font-weight: bold;
+                        }
+                    }
+                }
+                .cost {
+                    padding: 10px !important;
+                    border-radius: 8px;
+                }
+            .buttons {
+                display: flex;
+                flex-direction: column;
+                button {
+                    padding: 10px 70px !important;
+                    margin: 7px 0px !important;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    background-color: $lightGreen;
+                    border: 1px solid $lightGreen;
+                    transition: all 0.3s;
+                    color: #555;
+                    font-size: 18;
+                    &:hover {
+                        color: rgb(22, 109, 48);
+                        background-color: white;
+                        border: 1px solid $lightGreen;
+                     }
+                    }
+                  }
+                }
+                
+            p {
+                font-size: 12;
+                font-weight: bold;
+                color: rgb(204, 47, 47);
+                padding: 10px 0px 0px 0px !important;
+            }
+        }
     }
 }
