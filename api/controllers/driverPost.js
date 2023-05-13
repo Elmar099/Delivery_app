@@ -85,31 +85,12 @@ export const finishOrder = (req, res) => {
         if (err) return res.status(403).json("Token not valid")
 
         
-        const q = "UPDATE orders SET `did`=? WHERE `did` = ? "
+        const q = "DELETE FROM orders WHERE `did` = ? "
 
-        db.query(q, ['null', userInfo.id], (err, data) => {
-            if (err) return res.status(403).json("You can only delete your posts!")
+        db.query(q, [userInfo.id], (err, data) => {
+            if (err) return res.status(403).json("You can only finish your posts!")
 
-            return res.status(200).json("Post deleted")
-        })
-    })
-}
-
-
-export const deletePost = (req, res) => {
-    const token = req.cookies.access_token
-    if(!token) return res.status(401).json("Not authneticated!")
-
-    jwt.verify(token, "jwtkey", (err, userInfo)=> {
-        if (err) return res.status(403).json("Token not valid")
-
-        const postId = req.params.id
-        const q = "DELETE FROM orders WHERE `id` = ?"
-
-        db.query(q, [postId], (err, data) => {
-            if (err) return res.status(403).json("You can only delete your posts!")
-
-            return res.status(200).json("Post deleted")
+            return res.status(200).json("Post finished")
         })
     })
 }

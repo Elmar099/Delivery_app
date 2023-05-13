@@ -72,7 +72,7 @@ const Driver = () => {
   const finishOrder = async e => {
     e.preventDefault()
     try{
-      await axios.put('/driverPosts/finish')
+      await axios.delete('/driverPosts/finish')
       navigate('/driverHome') 
     }catch(err) {
       console.log(err.response.data)

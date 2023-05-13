@@ -9,6 +9,7 @@ const libraries = ["places", "geometry"];
 const Write = () => {
   const state = useLocation().state
   const { currentUser } = useContext(AuthContext);
+  const [err, setError] = useState(null);
   const [autoComplete, setAutoComplete] = useState(null)
   const [title, setTitle] = useState(state?.title || "")
   const [value, setValue] = useState(state?.desc || "")
@@ -50,12 +51,13 @@ const Write = () => {
       })
       navigate('/order')
     } catch(err) {
-        console.log(err)
+      setError(err.response.data)
     }
   }
   
   return (
     <div className="add">
+      <h1>~Make an order~</h1>
       <div className="content">
       <label htmlFor="orderName">Order name</label>
 
@@ -77,14 +79,10 @@ const Write = () => {
         <div className="item">
           <h1>Post order</h1>
           <div className="buttons">
-          {currentUser.locate ? (
-        <button onClick={handleClick}>Confirm order</button>
-      ) : (
-        <p>Please enter your location to proceed with the order.</p>
-      )}
+            <button onClick={handleClick}>Confirm order</button>
+            { err && <p>{err}</p> }
           </div>
         </div>
-        
       </div>
     </div>
   )
