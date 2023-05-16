@@ -6,8 +6,7 @@ const Home = () => {
     <div className='land'>
         <div className='land-text'>
             <h1>Welcome to <span>ODFDS</span> </h1>
-        </div>
-        <div className='home-buttons'>
+            <div className='home-buttons'>
           
         <button>
           <Link className='link' to='/contact'>Reach out to us</Link>
@@ -19,6 +18,8 @@ const Home = () => {
           
           </button>
         </div>
+        </div>
+        
     </div>
 
     

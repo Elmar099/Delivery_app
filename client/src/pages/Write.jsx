@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 //import { AddressAutofill } from '@mapbox/search-js-react';
 import { GoogleMap, Autocomplete, useLoadScript } from "@react-google-maps/api";
@@ -9,6 +9,7 @@ const libraries = ["places", "geometry"];
 const Write = () => {
   const state = useLocation().state
   const { currentUser } = useContext(AuthContext);
+  const [disable, setDisable] =  useState(false)
   const [err, setError] = useState(null);
   const [autoComplete, setAutoComplete] = useState(null)
   const [title, setTitle] = useState(state?.title || "")
@@ -17,7 +18,14 @@ const Write = () => {
   const [lati, setLat] = useState("")
   const [lngi, setLng] = useState("")
   const navigate = useNavigate()
-  
+  useEffect(() => {
+      if(currentUser.locate != null){
+        return
+      }else {
+        setError("Click on username and enter restaurant location and log back in!")
+        setDisable(true)
+      }
+   }, [])
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyDK5QjukwJ1EntqMrHObucvEOamfDoTqsI",
     libraries,
@@ -36,6 +44,7 @@ const Write = () => {
     const address = autoComplete.getPlace().formatted_address
     setLocate(address)
    }
+   
 
   const handleClick = async (e) => {
     e.preventDefault()
@@ -47,7 +56,6 @@ const Write = () => {
     try{
       state ? 
       await axios.put(`/posts/${state.id}`, {
-        
         title, locate:locate, desc:value, 
       })
       :
@@ -62,13 +70,13 @@ const Write = () => {
   
   return (
     <div className="add">
-      <h1>Make an order</h1>
+      <h1>Place an order</h1>
       <div className="content">
       <label htmlFor="orderName">Order name</label>
 
         <input required type="text" name='orderName' value={title} placeholder='Order for...' onChange={(e)=>setTitle(e.target.value)}/>
         <form>
-          <label>Location</label>
+          <label>Customer location</label>
       <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
          <div>
             <input required type="text" name='orderLocate' placeholder='Location...'/>
@@ -76,7 +84,7 @@ const Write = () => {
     </Autocomplete>
         
         </form>
-        <label htmlFor="orderD">Order details</label>
+        <label htmlFor="orderD">Order details and notes</label>
         <textarea required className='editor' name='orderD' value={value} placeholder='Order details...' onChange={e=>setValue(e.target.value)}/>
         
       </div>
@@ -84,7 +92,7 @@ const Write = () => {
         <div className="item">
           <div className="buttons">
             { err && <p>{err}</p> } 
-            <button onClick={handleClick}>Confirm order</button>
+            <button disabled={disable} onClick={handleClick}>Confirm order</button>
           </div>
         </div>
       </div>

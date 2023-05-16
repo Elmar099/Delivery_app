@@ -6,13 +6,7 @@ import axios from 'axios'
 import { AuthContext } from "../../context/authContext"
 import NoOrder from "../../images/orders.png"
 
-// import { useNavigate } from 'react-router-dom'
-
-
 const Order = () => {
-  const [directionsResponse, setDirectionsResponse] = useState(null)
-  const [distance, setDistance] = useState("")
-  const [duration, setDuration] = useState("")
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate()
   const [posts, setPosts] = useState([])
@@ -21,7 +15,6 @@ const Order = () => {
       try{
         const res = await axios.get("/posts")
         setPosts(res.data)
-        console.log(posts)
       } catch (err) {
         console.log(err)
       }
@@ -75,9 +68,7 @@ const Order = () => {
                   <div className="requested">requested!</div> : 
                <button onClick={() => handleClick(index)}>Request driver</button>
               }
-            
-             {/* {post.requested && <div className="requested">Driver has been requested!</div>} */}
-          </div>
+            </div>
         </div>
       ))
       : <p className="noOrders"><br></br>Need to login.</p>
@@ -88,7 +79,12 @@ const Order = () => {
       </div>
         : <p></p>  
   }
-    
+  {posts.length === 1 ? 
+      <div className="filler">
+        
+      </div>
+        : <p></p>  
+  }
       </div>
     </div>
   )

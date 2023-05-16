@@ -26,7 +26,8 @@ $lightGreen : #78bd39;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh ;
+            height: 100vh;
+            background-color: rgb(255, 253, 224);
 
             h1{
                 font-size: 25px;
@@ -163,15 +164,16 @@ $lightGreen : #78bd39;
             height: 100vh;
 
             .land-text{
-                height: 60vh;
+                height: 80vh;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                flex-direction: column;
                 color: white;
                 font-size: 45px;
-            }
-
-            .home-buttons {
+                letter-spacing: 2px;
+           
+                .home-buttons {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -191,7 +193,10 @@ $lightGreen : #78bd39;
                         background-color: white;
                         border: 1px solid $lightGreen;
                     }
-                }   
+                }  
+            }
+
+             
             }
         }
         //HOME
@@ -199,6 +204,7 @@ $lightGreen : #78bd39;
             display: flex;
             justify-content: center;
             align-items: center;
+            
             
             .posts{
                 margin-top: 20px !important;
@@ -208,8 +214,14 @@ $lightGreen : #78bd39;
                 gap: 30px;
 
                 .order-image {
-                    
                     height: 70vh;
+                }
+                .filler {
+                    border-radius: 8px;
+                    border: 1px dashed rgb(204, 204, 204);
+                    width: auto;
+                    height: auto;
+                    padding: 200px !important;
                 }
 
                 .noOrders {
@@ -262,7 +274,7 @@ $lightGreen : #78bd39;
                         }
 
                         p {
-                            color: #555;
+                            color: #838383;
                             font-size: 25px;
                         }
 
@@ -294,6 +306,7 @@ $lightGreen : #78bd39;
         .single {
             display: flex;
             gap: 50px;
+            
 
             .content{
                 flex: 5;
@@ -399,12 +412,11 @@ $lightGreen : #78bd39;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 100px !important;
             gap: 30px;
 
             h1{
+                margin-top: 100px !important;
                 text-align: center;
-                text-decoration: underline;
                 color: $lightGreen;
             }
             
@@ -423,18 +435,22 @@ $lightGreen : #78bd39;
           
               input{
                 padding: 10px !important;
-                border-radius: 8px;
-                border: 1px solid lightgray;
+               // border-radius: 8px;
+                background-color: transparent;
+                border: none;
+                border-bottom: 3px solid #7b974d;
                 width: 100%;
               }
               
               label {
-                font-weight: bold;
+                font-weight: 500;
                 font-size: 25px;
               }
               
               .editor {
                 padding: 10px !important;
+                border-radius: 8px;
+                background-color: transparent;
                 height: 150px;
                 width: 100%;
                 overflow: scroll;
@@ -452,7 +468,7 @@ $lightGreen : #78bd39;
           
               .item{
                 padding: 10px !important;
-                border: 1px solid lightgray;
+                border: none;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
@@ -470,6 +486,7 @@ $lightGreen : #78bd39;
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
+                margin-bottom: 47px !important;
                 
                 p {
                     font-size: 20px;
@@ -489,12 +506,21 @@ $lightGreen : #78bd39;
                   transition: all 0.3s;
                   color: #555;
                   font-size: 18px;
+                  
           
                   &:hover {
                     color: rgb(22, 109, 48);
                     background-color: white;
                     border: 1px solid $lightGreen;
                   }
+
+                  &:disabled {
+                    color: black;
+                    opacity: 0.6;
+                    background-color: #a0ac91;
+                    border: 1px solid gray;
+                    cursor: not-allowed;
+                }
                 }
               }
             }
@@ -509,6 +535,7 @@ $lightGreen : #78bd39;
                 text-align: center;
                 text-decoration: underline;
                 color: $lightGreen;
+                margin-top: 190px !important;
             }
             p {
                 font-size: 15px;
@@ -526,7 +553,9 @@ $lightGreen : #78bd39;
                 padding: 50px !important;
                 border: 1px solid rgb(184, 175, 175);
                 border-radius: 8px;
-                width: 200px;          
+                width: 200px; 
+                margin-bottom: 100px !important; 
+                        
             }
             label {
                 margin-top: 30px !important;
