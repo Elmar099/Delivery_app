@@ -12,18 +12,16 @@ const DriverNav = () => {
     <div className='container'>
       <div className='logo'>
         <Link to='/driverHome'>
-          <img src={Logo} alt='' />
+          <img src={Logo} alt='logo' />
         </Link>
       </div>
       <div className='links'>
-        <Link className='link' to="/driverContact">
-          <h6 className='navLinks'>CONTACT</h6>
-        </Link>
         <Link className='link' to="/driverHome">
           <h6 className='navLinks'>HOME</h6>
         </Link>
-        
-        
+        <Link className='link' to="/driverContact">
+          <h6 className='navLinks'>CONTACT</h6>
+        </Link>
           {currentUser ? (
           <Link className='link' to="/driverOrder">
             <h6 className='navLinks'>ORDERS</h6>
@@ -38,9 +36,6 @@ const DriverNav = () => {
             ) : ( 
             <p></p>
         )}
-       
-          
-        
 </div>
         <div className='links'>
         <span className='logged'>

@@ -5,14 +5,14 @@ import { useState} from 'react'
 
 
 const DriverProfile = () => {
-
+  
+  const [err, setError] = useState(null)
   const [inputs, setInputs] = useState({
     f_name: '',
     l_name: '',
     drivers_license: '',
     license_plate: '',
   })
-  const [err, setError] = useState(null)
 
   const handleChange = e => {
     setInputs(prev =>({...prev, [e.target.name]: e.target.value}))
@@ -22,6 +22,10 @@ const DriverProfile = () => {
 
   const handleSubmit = async e => {
     e.preventDefault()
+    if (inputs.f_name==='' || inputs.l_name==='' || inputs.drivers_license==='' || inputs.license_plate==='') {
+      setError("Please fill in all the required fields.");
+      return
+    }
     try{
       await axios.put('/driverPosts/', inputs)
       navigate('/driver')
@@ -46,6 +50,7 @@ const DriverProfile = () => {
               <label htmlFor="resName">License Plate</label>
               <input type="text" placeholder="License Plate..." name='license_plate' onChange={handleChange}/>
 
+              { err && <p>{err}</p> }
               <button onClick={handleSubmit}>Save</button>
             </form>
           </div>

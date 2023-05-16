@@ -45,6 +45,10 @@ const Profile = () => {
   
   const handleSubmit = async e => {
     e.preventDefault()
+    if (inputs.name ==='' || locate==='' || inputs.license_number==='') {
+      setError("Please fill in all the required fields.");
+      return
+    }
     try{
       await axios.put('/posts/', {
         inputs, locate:locate, lati, lngi,
@@ -69,8 +73,9 @@ const Profile = () => {
             </Autocomplete>
               
               <label htmlFor="resName">License Number</label>
+              
               <input type="text" placeholder="License Number" name='license_number' onChange={handleChange}/>
-
+                { err && <p>{err}</p> }
               <button onClick={handleSubmit} >Save</button>
             </form>
           </div>

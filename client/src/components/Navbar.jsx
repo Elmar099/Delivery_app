@@ -12,17 +12,16 @@ const Navbar = () => {
       <div className='container'>
         <div className='logo'>
           <Link to='/'>
-            <img src={Logo} alt='' />
+            <img src={Logo} alt='logo' />
           </Link>
         </div>
         <div className='links'>
-          <Link className='link' to="/contact">
-            <h6 className='navLinks'>CONTACT</h6>
-          </Link>
           <Link className='link' to="/home">
             <h6 className='navLinks'>HOME</h6>
           </Link>
-          
+          <Link className='link' to="/contact">
+            <h6 className='navLinks'>CONTACT</h6>
+          </Link>
           <Link className='link' to="/order">
             {currentUser?
             <h6 className='navLinks'>ORDERS</h6> 

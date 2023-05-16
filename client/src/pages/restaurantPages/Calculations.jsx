@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import {  useNavigate } from 'react-router-dom';
 import { useLoadScript } from "@react-google-maps/api";
 import axios from 'axios';
 import Logo from '../../images/logo2.png'
 const libraries = ["places", "geometry"];
 
 const Calculations = () => {
-  const [post, setPost] = useState([]); 
+  const [post, setPost] = useState([]);
+  const [disable, setDisable] = useState(true) 
   const navigate = useNavigate()
   const [directionsResponse, setDirectionsResponse] = useState(null)
   const [cost, setCost] = useState(null)
@@ -19,9 +20,7 @@ const Calculations = () => {
       try{
         const res = await axios.get("/driverPosts/coords")
         setPost(res.data)
-        // if(res.data.length === 0) {
-        //   setError("Driver hasn't accepted yet!")
-        // }
+       
       } catch (err) {
         console.log("driver hasnt accepted yet")
       }
@@ -56,6 +55,8 @@ const Calculations = () => {
     setCost(5 + 2*(num))
     setDistance(results.routes[0].legs[0].distance.text)
     setDuration(results.routes[0].legs[0].duration.text)
+    setDisable(false)
+
     }catch(err) {
       setError("Driver hasn't accepted yet!")
     }
@@ -83,7 +84,7 @@ const Calculations = () => {
         { err && <p>{err}</p> }
         <div className='buttons'>
         <button onClick={disdir}>Caluculate payment</button>
-        <button onClick={confirm}>Confirm payment</button>
+        <button disabled={disable} onClick={confirm} >Confirm payment</button>
         <button onClick={refresh}>Refresh page</button>
         </div>
         </div>

@@ -39,7 +39,7 @@ const Write = () => {
 
   const handleClick = async (e) => {
     e.preventDefault()
-    if (title==='' || !locate==='' || !value==='') {
+    if (title==='' || locate==='' || value==='') {
       setError("Please fill in all the required fields.");
       return
     }
@@ -66,28 +66,24 @@ const Write = () => {
       <div className="content">
       <label htmlFor="orderName">Order name</label>
 
-      { err && <p>{err}</p> }
         <input required type="text" name='orderName' value={title} placeholder='Order for...' onChange={(e)=>setTitle(e.target.value)}/>
         <form>
           <label>Location</label>
       <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
          <div>
-         { err && <p>{err}</p> }
             <input required type="text" name='orderLocate' placeholder='Location...'/>
          </div>
     </Autocomplete>
         
         </form>
         <label htmlFor="orderD">Order details</label>
-        { err && <p>{err}</p> }
         <textarea required className='editor' name='orderD' value={value} placeholder='Order details...' onChange={e=>setValue(e.target.value)}/>
         
       </div>
       <div className="menu">
         <div className="item">
-          <h1>Post order</h1>
           <div className="buttons">
-            {/* { err && <p>{err}</p> } */}
+            { err && <p>{err}</p> } 
             <button onClick={handleClick}>Confirm order</button>
           </div>
         </div>
