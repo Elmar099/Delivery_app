@@ -11,7 +11,7 @@ const DriverNav = () => {
     <div className='navbar'>
     <div className='container'>
       <div className='logo'>
-        <Link to='/'>
+        <Link to='/driverHome'>
           <img src={Logo} alt='' />
         </Link>
       </div>
