@@ -17,8 +17,5 @@ This is a delivery app designed specifically for restaurants to easily connect w
 - **SCSS**: A CSS preprocessor that enhances the capabilities of CSS.
 - **Docker**: A platform that allows the creation and deployment of containerized applications.
 
-## Setup Instructions
-**TODO**
-
 ## Overview
 ![odfdsproh](https://github.com/Elmar099/Delivery_app/assets/101601240/fdb8bd8d-9678-4b57-8994-76f5a8e2d23e)
