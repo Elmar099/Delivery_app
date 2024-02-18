@@ -1,4 +1,4 @@
-# Delivery_app 🥘
+# Deliverio 🥘
 This is a delivery app designed specifically for restaurants to easily connect with drivers and deliver their food orders to customers. The app is built using various technologies, including React, Express, Node.js, MySQL, SCSS, and Docker. 
 
 ## Features
